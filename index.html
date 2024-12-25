@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harsh Kumar Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- Fixed Header -->
+    <header class="fixed-header">
+        <div class="logo">Portfolio</div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Reach Me</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Home Section -->
+    <section class="home-section" id="home">
+        <div class="home-content">
+            <h1>Hi <span class="wave-emoji">👋</span>, I'm <span class="name">Harsh Kumar</span></h1>
+            <p class="skills-text">I am into <span class="rotating-text"></span></p>
+            
+            <div class="avatar">
+                <img src="images/avatar.png" alt="Avatar" />
+            </div>
+
+            <!-- Social Icons -->
+            <div class="social-icons">
+                <a href="https://www.linkedin.com/in/kumarharshh" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://github.com/harshhkumar" target="_blank"><i class="fa-brands fa-github"></i></a>
+                <a href="https://www.kaggle.com/okayharsh" target="_blank"><i class="fa-brands fa-kaggle"></i></a>
+                <a href="https://twitter.com" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+            </div>        
+        </div>
+    </section>
+
+    <!-- JavaScript for Typing Effect -->
+    <script>
+     const rotatingText = document.querySelector(".rotating-text");
+const skills = ["Data Analytics ", "Data Engineering ", "Data Visualization ", "Machine Learning ", "Deep Learning ", "Web Development "];
+
+let skillIndex = 0; // Current skill index
+let charIndex = 0;  // Character index
+let isDeleting = false; // Typing or deleting
+
+function typeEffect() {
+    const currentSkill = skills[skillIndex]; // Current skill text
+
+    if (isDeleting) {
+        // Erase text
+        rotatingText.textContent = currentSkill.substring(0, charIndex--);
+    } else {
+        // Type text
+        rotatingText.textContent = currentSkill.substring(0, charIndex++);
+    }
+
+    // Typing and erasing speeds
+    let typingSpeed = isDeleting ? 50 : 100;
+
+    if (!isDeleting && charIndex === currentSkill.length) {
+        typingSpeed = 150; // Pause after typing
+        isDeleting = true;
+    } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        skillIndex = (skillIndex + 1) % skills.length; // Move to next skill
+    }
+
+    setTimeout(typeEffect, typingSpeed);
+}
+
+typeEffect(); // Initial call
+ // Initial call
+    </script>
+<!-- About Section -->
+<section id="about" class="about-section">
+    <div class="about-container">
+        <!-- Left Section -->
+        <div class="about-left">
+            <h2 class="section-title">Who I Am</h2>
+            <div class="about-content">
+                <p class="about-text">
+                    �� <strong>Hey there! I'm Harsh Kumar</strong>, a Software Engineer chillin' in Chennai.
+                </p>
+                <p class="about-text">
+                    <span class="highlight">By day</span>, I'm a <strong>Data Analyst at Invictusdata.ai</strong> for <strong>Viome</strong> –  
+                    crunching numbers, whipping up slick reports to supercharge businesses,  
+                    and building rock-solid data pipelines to kick manual work out the door.  
+                </p>
+                <p class="about-text">
+                    <span class="highlight">When I'm not coding</span>, I'm probably checkmating someone on the chessboard. 🧠♟  
+                </p>
+                <div class="buttons">
+                    <a href="docs/Harsh_Resume.pdf" class="btn resume-btn" target="_blank">Download My Resume</a>
+                    <a href="mailto:your-okayharsh1@gmail.com" class="btn contact-btn">Reach Me</a>
+                </div>            
+            </div>
+        </div>
+        
+        <!-- Right Section -->
+        <div class="about-right">
+            <h3>What I Do</h3>
+            <div class="skills-groups-container">
+                <!-- Your skills groups here -->
+                <div class="skills-group">
+                    <h4>Data Analytics</h4>
+                    <div class="skills">
+                        <div class="skill"><i class="fab fa-python"></i> Python</div>
+                        <div class="skill"><i class="fas fa-database"></i> SQL</div>
+                        <div class="skill"><i class="fas fa-table"></i> Excel</div>
+                        <div class="skill"><i class="fas fa-chart-line"></i> Tableau</div>
+                        <div class="skill"><i class="fas fa-chart-bar"></i> Power BI</div>
+                        <div class="skill"><i class="fas fa-code"></i> Pandas</div>
+                        <div class="skill"><i class="fas fa-code"></i> NumPy</div>
+                        <div class="skill"><i class="fas fa-chart-pie"></i> Matplotlib</div>
+                        <div class="skill"><i class="fas fa-chart-area"></i> Seaborn</div>
+                        <div class="skill"><i class="fas fa-database"></i> PostgreSQL</div>
+                        <div class="skill"><i class="fas fa-database"></i> MySQL</div>
+                    </div>
+                </div>
+
+                <div class="skills-group">
+                    <h4>Data Engineering</h4>
+                    <div class="skills">
+                        <div class="skill"><i class="fab fa-aws"></i> AWS</div>
+                        <div class="skill"><i class="fab fa-google"></i> GCP</div>
+                        <div class="skill"><i class="fas fa-database"></i> BigQuery</div>
+                        <div class="skill"><i class="fas fa-server"></i> Redshift</div>
+                        <div class="skill"><i class="fas fa-cloud"></i> Airflow</div>
+                        <div class="skill"><i class="fas fa-database"></i> GraphQL</div>
+                    </div>
+                </div>
+                <div class="skills-group">
+                    <h4>Machine Learning & Deep Learning</h4>
+                    <div class="skills">
+                        <div class="skill"><i class="fas fa-brain"></i> Scikit-Learn</div>
+                        <div class="skill"><i class="fas fa-cogs"></i> TensorFlow</div>
+                        <div class="skill"><i class="fas fa-chart-area"></i> PyTorch</div>
+                        <div class="skill"><i class="fas fa-robot"></i> Beautiful Soup</div>
+                        <div class="skill"><i class="fas fa-cloud"></i> SageMaker</div>
+                        <div class="skill"><i class="fas fa-project-diagram"></i> NLTK</div>
+                        <div class="skill"><i class="fas fa-code"></i> Flask</div>
+                        <div class="skill"><i class="fas fa-cloud"></i>Jupyter Notebook </div>
+                    </div>
+                </div>
+                <div class="skills-group">
+                    <h4>Web Development</h4>
+                    <div class="skills">
+                        <div class="skill"><i class="fab fa-html5"></i> HTML</div>
+                        <div class="skill"><i class="fab fa-css3-alt"></i> CSS</div>
+                        <div class="skill"><i class="fab fa-js"></i> JavaScript</div>
+                        <div class="skill"><i class="fas fa-paper-plane"></i> Bootstrap</div>
+                        <div class="skill"><i class="fas fa-paper-plane"></i> Tailwind CSS</div>
+                    </div>
+                </div>
+
+                <div class="skills-group">
+                    <h4>Others</h4>
+                    <div class="skills">
+                        <div class="skill"><i class="fab fa-git"></i> Git</div>
+                        <div class="skill"><i class="fab fa-github"></i> GitHub</div>
+                        <div class="skill"><i class="fas fa-paper-plane"></i> Postman</div>
+                        <div class="skill"><i class="fas fa-tasks"></i> Jira</div>
+                        <div class="skill"><i class="fas fa-comments"></i>Confluence</div>
+                        <div class="skill"><i class="fas fa-cogs"></i> VS Code</div>
+                        <div class="skill"><i class="fas fa-brain"></i> LLM's</div>
+                        <div class="skill"><i class="fas fa-brain"></i>Shopify</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Experience Section -->
+<section class="experience-section" id="experience">
+    <h2 class="section-title">Experience</h2>
+    <div class="experience-container">
+        <div class="timeline">
+            <!-- Software Engineer -->
+            <div class="experience-card">
+                <div class="compact-view">
+                    <div class="company-logo">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="compact-info">
+                        <h3 class="role-title">Data Analyst</h3>
+                        <a href="https://www.invictusdata.ai" target="_blank" class="company-name">Invictusdata.ai</a>
+                        <div class="duration">
+                            <i class="far fa-calendar-alt"></i>
+                            <span>Oct 2024 - Present</span>
+                            <span class="location">On-Site</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="expanded-view">
+                    <div class="responsibilities">
+                        <ul>
+                            <li>Architecting and developing a sophisticated Shopify app leveraging ML algorithms for personalized product recommendations, resulting in 35% increase in cross-selling opportunities</li>
+                            <li>Implementing real-time data pipeline using WebSocket and Redis to track user interactions, achieving 98% accuracy in customer preference prediction</li>
+                            <li>Analyzing customer behavior patterns through advanced analytics and A/B testing, leading to 25% improvement in targeted marketing campaigns</li>
+                            <li>Optimizing recommendation engine performance using caching strategies, reducing response time by 40%</li>
+                        </ul>
+                    </div>
+                    <div class="skills-used">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Shopify API</span>
+                        <span class="skill-tag">ML</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">Analytics</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Software Engineer Intern -->
+            <div class="experience-card">
+                <div class="compact-view">
+                    <div class="company-logo">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <div class="compact-info">
+                        <h3 class="role-title">Software Engineer Intern</h3>
+                        <a href="https://www.invictusdata.ai" target="_blank" class="company-name">Invictusdata.ai</a>
+                        <div class="duration">
+                            <i class="far fa-calendar-alt"></i>
+                            <span>July 2024 - Oct 2024</span>
+                            <span class="location">On-Site</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="expanded-view">
+                    <div class="responsibilities">
+                        <ul>
+                            <li>Engineered interactive dashboards Tableau, boosting sales tracking efficiency by 40% and enabling data-driven decision-making with 50% improved accuracy</li>
+                            <li>Developed automated ETL pipelines using BigQuery and Python, reducing manual data processing time by 60% and ensuring data integrity</li>
+                            <li>Implemented efficient data retrieval system by integrating Shopify API with GraphQL, achieving 45% faster response times and enhanced scalability</li>
+                            <li>Optimized database performance through advanced Redshift and PostgreSQL query tuning, resulting in 30% faster data processing and reduced resource utilization</li>
+                        </ul>
+                    </div>
+                    <div class="skills-used">
+                        <span class="skill-tag">BigQuery</span>
+                        <span class="skill-tag">GraphQL</span>
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">Redshift</span>
+                        <span class="skill-tag">Tableau</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Projects Section -->
+<section class="projects-section" id="projects">
+    <h2 class="section-title">Selected Projects</h2>
+    <div class="projects-grid">
+        <!-- Project 1 - Portfolio -->
+        <div class="project-item">
+            <video autoplay muted loop playsinline>
+                <source src="./videos/project 1.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="project-overlay">
+                <h3>Portfolio Website</h3>
+                <div class="project-links">
+                    <a href="#" class="project-link"><i class="fab fa-github"></i></a>
+                    <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 2 - Movie Recommendation -->
+        <div class="project-item">
+            <video autoplay muted loop>
+                <source src="videos/Project 2.mp4" type="video/mp4">
+            </video>
+            <div class="project-overlay">
+                <h3>Movie Recommendation System</h3>
+                <div class="project-links">
+                    <a href="https://github.com/harshhkumar/Movie-Recommender-System" target="_blank" class="project-link"><i class="fab fa-github"></i></a>
+                    <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 3 - Udemy Dashboard -->
+        <div class="project-item">
+            <video autoplay muted loop>
+                <source src="videos/Project 3.mp4" type="video/mp4">
+            </video>
+            <div class="project-overlay">
+                <h3>Udemy Courses Analysis Dashboard</h3>
+                <div class="project-links">
+                    <a href="https://github.com/harshhkumar/Udemy-Courses-Analysis-Dashboard" target="_blank" class="project-link"><i class="fab fa-github"></i></a>
+                    <a href="https://app.powerbi.com/groups/me/reports/0f04c3d2-97cc-4355-8df6-c7c906cfa9c3/ReportSection?ctid=a6dbddde-5798-4eba-a5a8-78807e82d9eb&experience=power-bi" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 4 - Ecommerce Dashboard -->
+        <div class="project-item">
+            <video autoplay muted loop>
+                <source src="videos/Project 4.mp4" type="video/mp4">
+            </video>
+            <div class="project-overlay">
+                <h3>Ecommerce Sales Dashboard</h3>
+                <div class="project-links">
+                    <a href="https://github.com/harshhkumar/Ecommerce-Sales-Dasboard-Power-BI-/tree/main" target="_blank" class="project-link"><i class="fab fa-github"></i></a>
+                    <a href="https://app.powerbi.com/groups/me/reports/f3f63985-cc15-4ccf-b2e5-c32d1a9b99e8/ReportSection?ctid=a6dbddde-5798-4eba-a5a8-78807e82d9eb&experience=power-bi" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="contact-section" id="contact">
+    <h2 class="section-title">Reach Me</h2>
+    <div class="contact-container">
+        <div class="contact-info">
+            <div class="contact-item glass-card">
+                <i class="fas fa-envelope"></i>
+                <a href="mailto:okayharsh1@gmail.com">okayharsh1@gmail.com</a>
+            </div>
+            
+            <div class="contact-item glass-card">
+                <i class="fab fa-linkedin"></i>
+                <a href="https://www.linkedin.com/in/kumarharshh" target="_blank">LinkedIn Profile</a>
+            </div>
+            
+            <div class="contact-item glass-card">
+                <i class="fab fa-twitter"></i>
+                <a href="https://twitter.com/your-handle" target="_blank">Twitter Profile</a>
+            </div>
+
+            <div class="contact-quote">
+                <p>"Let's connect and create something amazing together!"</p>
+                <div class="quote-decoration"></div>
+            </div>
+        </div>
+
+        <div class="contact-form">
+            <form id="contact-form">
+                <div class="form-group">
+                    <input type="text" id="name" name="name" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="email" name="email" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- Mobile Menu Toggle -->
+<script>
+const mobileMenu = document.querySelector('.mobile-menu'); 
+const navLinks = document.querySelector('.nav-links');
+
+mobileMenu.addEventListener('click', () => {
+    navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+});
+
+// Close menu when clicking a link
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+        if(window.innerWidth <= 768) {
+            navLinks.style.display = 'none';
+        }
+    });
+});
+</script>
+
+</body>
+</html>
