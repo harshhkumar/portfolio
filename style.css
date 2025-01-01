@@ -116,13 +116,13 @@ h1 {
 }
 
 .skills-text {
-    font-size: 1.7rem;  /* Slightly smaller than rotating text */
+    font-size: 1.36rem;  /* Changed to 1.36rem */
     margin: 0.5rem 0;
     text-align: center;
 }
 
 .rotating-text {
-    font-size: 2.2rem;  /* Original size */
+    font-size: 2.2rem;  /* Keeping this the same */
     color: var(--accent);
     font-weight: bold;
 }
@@ -1033,13 +1033,13 @@ body,
 }
 
 .skills-text {
-    font-size: 1.7rem;  /* Slightly smaller than rotating text */
+    font-size: 1.2rem;  /* Reduced more for bigger difference */
     margin: 0.5rem 0;
     text-align: center;
 }
 
 .rotating-text {
-    font-size: 2.2rem;  /* Original size */
+    font-size: 2.3rem;  /* Kept slightly larger */
     color: var(--accent);
     font-weight: bold;
 }
@@ -1247,6 +1247,11 @@ body,
 
     .project-item:active .project-overlay {
         transform: translateY(0);
+    }
+
+    .contact-item:active,
+    .skill:active {
+        transform: scale(0.98);
     }
 }
 
