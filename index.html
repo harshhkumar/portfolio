@@ -3,22 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Harsh Kumar Portfolio</title>
+    <title>Harsh Kumar</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/png" sizes="32x32" href="images/Profile.png">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Pacifico&family=Great+Vibes&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 </head>
 <body>
+    <div id="particles-js"></div>
     <!-- Fixed Header -->
     <header class="fixed-header">
-        <div class="logo">Portfolio</div>
+        <div class="logo">Harsh Kumar</div>
         <nav>
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Reach Me</a></li>
+                <li><a href="#home">Overview</a></li>
+                <li><a href="#about">Profile</a></li>
+                <li><a href="#experience">Work</a></li>
+                <li><a href="#projects">Portfolio</a></li>
+                <li><a href="#contact">Connect</a></li>
             </ul>
         </nav>
     </header>
@@ -26,11 +30,18 @@
     <!-- Home Section -->
     <section class="home-section" id="home">
         <div class="home-content">
-            <h1>Hi <span class="wave-emoji">👋</span>, I'm <span class="name">Harsh Kumar</span></h1>
-            <p class="skills-text">I am into <span class="rotating-text"></span></p>
+            <h1 class="main-heading">Making Data Speak, Code Work</h1>
+            <p class="skills-text">Creating impact through <span class="rotating-text"></span></p>
             
             <div class="avatar">
-                <img src="images/avatar.png" alt="Avatar" />
+                <div class="avatar-inner">
+                    <div class="avatar-front">
+                        <img src="images/Profile.png" alt="Avatar" />
+                    </div>
+                    <div class="avatar-back">
+                        <img src="images/avatar.png" alt="Project" />
+                    </div>
+                </div>
             </div>
 
             <!-- Social Icons -->
@@ -38,7 +49,7 @@
                 <a href="https://www.linkedin.com/in/kumarharshh" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
                 <a href="https://github.com/harshhkumar" target="_blank"><i class="fa-brands fa-github"></i></a>
                 <a href="https://www.kaggle.com/okayharsh" target="_blank"><i class="fa-brands fa-kaggle"></i></a>
-                <a href="https://twitter.com" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+                <a href="https://x.com/kharshhh?s=21" target="_blank"><i class="fa-brands fa-twitter"></i></a>
             </div>        
         </div>
     </section>
@@ -88,7 +99,7 @@ typeEffect(); // Initial call
             <h2 class="section-title">Who I Am</h2>
             <div class="about-content">
                 <p class="about-text">
-                    �� <strong>Hey there! I'm Harsh Kumar</strong>, a Software Engineer chillin' in Chennai.
+                    👋   <strong>Hey there! I'm Harsh Kumar</strong>, a Software Engineer chillin' in Chennai.
                 </p>
                 <p class="about-text">
                     <span class="highlight">By day</span>, I'm a <strong>Data Analyst at Invictusdata.ai</strong> –  
@@ -99,8 +110,8 @@ typeEffect(); // Initial call
                     <span class="highlight">When I'm not coding</span>, I'm probably checkmating someone on the chessboard. 🧠♟  
                 </p>
                 <div class="buttons">
-                    <a href="docs/Harsh_Resume.pdf" class="btn resume-btn" target="_blank">Download My Resume</a>
-                    <a href="mailto:your-okayharsh1@gmail.com" class="btn contact-btn">Reach Me</a>
+                    <a href="docs/Harsh_Resume.pdf" class="btn resume-btn" target="_blank">See My Resume</a>
+                    <a href="mailto:your-okayharsh1@gmail.com" class="btn contact-btn">Get In Touch</a>
                 </div>            
             </div>
         </div>
@@ -181,7 +192,7 @@ typeEffect(); // Initial call
 
 <!-- Experience Section -->
 <section class="experience-section" id="experience">
-    <h2 class="section-title">Experience</h2>
+    <h2 class="section-title">Work Experience</h2>
     <div class="experience-container">
         <div class="timeline">
             <!-- Software Engineer -->
@@ -260,7 +271,7 @@ typeEffect(); // Initial call
 </section>
 <!-- Projects Section -->
 <section class="projects-section" id="projects">
-    <h2 class="section-title">Selected Projects</h2>
+    <h2 class="section-title">Portfolio</h2>
     <div class="projects-grid">
         <!-- Project 1 - Portfolio -->
         <div class="project-item">
@@ -271,7 +282,7 @@ typeEffect(); // Initial call
             <div class="project-overlay">
                 <h3>Portfolio Website</h3>
                 <div class="project-links">
-                    <a href="#" class="project-link"><i class="fab fa-github"></i></a>
+                    <a href="https://github.com/harshhkumar/portfolio" target="_blank" class="project-link"><i class="fab fa-github"></i></a>
                     <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
                 </div>
             </div>
@@ -286,7 +297,7 @@ typeEffect(); // Initial call
                 <h3>Movie Recommendation System</h3>
                 <div class="project-links">
                     <a href="https://github.com/harshhkumar/Movie-Recommender-System" target="_blank" class="project-link"><i class="fab fa-github"></i></a>
-                    <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+                    <a href="https://filmfinder-ai.streamlit.app/" target="_blank"  class="project-link"><i class="fas fa-external-link-alt"></i></a>
                 </div>
             </div>
         </div>
@@ -322,7 +333,7 @@ typeEffect(); // Initial call
 </section>
 
 <section class="contact-section" id="contact">
-    <h2 class="section-title">Reach Me</h2>
+    <h2 class="section-title">Reach me</h2>
     <div class="contact-container">
         <div class="contact-info">
             <div class="contact-item glass-card">
@@ -337,17 +348,17 @@ typeEffect(); // Initial call
             
             <div class="contact-item glass-card">
                 <i class="fab fa-twitter"></i>
-                <a href="https://twitter.com/your-handle" target="_blank">Twitter Profile</a>
+                <a href="https://x.com/kharshhh?s=21" target="_blank">Twitter Profile</a>
             </div>
 
             <div class="contact-quote">
-                <p>"Let's connect and create something amazing together!"</p>
+                <p id="random-quote">"Let's connect and create something amazing together!"</p>
                 <div class="quote-decoration"></div>
             </div>
         </div>
 
         <div class="contact-form">
-            <form id="contact-form">
+            <form id="contact-form" action="https://formsubmit.co/okayharsh1@gmail.com" method="POST">
                 <div class="form-group">
                     <input type="text" id="name" name="name" placeholder="Your Name" required>
                 </div>
@@ -357,28 +368,143 @@ typeEffect(); // Initial call
                 <div class="form-group">
                     <textarea id="message" name="message" placeholder="Your Message" required></textarea>
                 </div>
+                <!-- Updated hidden inputs with correct URL -->
+                <input type="hidden" name="_subject" value="New Portfolio Contact Message!">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_next" value="https://portfolio-harshh.vercel.app">
                 <button type="submit" class="submit-btn">Send Message</button>
             </form>
         </div>
     </div>
 </section>
 
-<!-- Mobile Menu Toggle -->
 <script>
-const mobileMenu = document.querySelector('.mobile-menu'); 
-const navLinks = document.querySelector('.nav-links');
+const quotes = [
+    "Let's connect and create something amazing together! 🚀",
+    "Got a cool project in mind? Let's make it happen! 💡",
+    "Always excited to collaborate on innovative ideas! ✨",
+    "Looking for a data-driven solution? Let's chat! 📊",
+    "Ready to transform your data into insights? Reach out! 📈",
+    "Passionate about turning complex problems into elegant solutions! 💪",
+    "Let's build something extraordinary together! 🌟",
+    "Want to discuss tech, data, or chess? I'm all ears! ♟️",
+    "Innovation meets analytics - let's create magic! ✨",
+    "Ready to take your project to the next level? Connect now! 🎯"
+];
 
-mobileMenu.addEventListener('click', () => {
-    navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+function updateQuote() {
+    const quoteElement = document.getElementById('random-quote');
+    const randomIndex = Math.floor(Math.random() * quotes.length);
+    quoteElement.textContent = quotes[randomIndex];
+}
+
+// Update quote on page load
+updateQuote();
+
+// Optional: Update quote every 5 seconds
+// setInterval(updateQuote, 5000);
+
+// Optional: Update quote on page refresh
+window.addEventListener('load', updateQuote);
+</script>
+
+<script>
+document.getElementById('contact-form').addEventListener('submit', function(e) {
+    // Prevent default form submission
+    e.preventDefault();
+    
+    // Submit the form
+    this.submit();
+    
+    // Show success message (optional)
+    alert('Thank you for your message! I will get back to you soon.');
+});
+</script>
+
+<script>
+// Add touch support for project items
+document.querySelectorAll('.project-item').forEach(item => {
+    item.addEventListener('touchstart', function(e) {
+        this.classList.add('touch-active');
+    }, {passive: true});
+
+    item.addEventListener('touchend', function(e) {
+        this.classList.remove('touch-active');
+    });
 });
 
-// Close menu when clicking a link
-document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-        if(window.innerWidth <= 768) {
-            navLinks.style.display = 'none';
+// Prevent sticky hover effects on mobile
+document.addEventListener('touchstart', function() {}, {passive: true});
+</script>
+
+<script>
+particlesJS("particles-js", {
+  particles: {
+    number: {
+      value: 200,
+      density: {
+        enable: true,
+        value_area: 1000
+      }
+    },
+    color: {
+      value: "#00d4ff"
+    },
+    shape: {
+      type: "circle"
+    },
+    opacity: {
+      value: 0.7,
+      random: false
+    },
+    size: {
+      value: 3,
+      random: true
+    },
+    line_linked: {
+      enable: true,
+      distance: 150,
+      color: "#00d4ff",
+      opacity: 0.4,
+      width: 1
+    },
+    move: {
+      enable: true,
+      speed: 3,
+      direction: "none",
+      random: false,
+      straight: false,
+      out_mode: "out",
+      bounce: false
+    }
+  },
+  interactivity: {
+    detect_on: "window",
+    events: {
+      onhover: {
+        enable: true,
+        mode: "grab"
+      },
+      onclick: {
+        enable: true,
+        mode: "push"
+      },
+      resize: true
+    },
+    modes: {
+      grab: {
+        distance: 150,
+        line_linked: {
+          opacity: 2.4
         }
-    });
+      },
+      push: {
+        particles_nb: 7
+      }
+    }
+  },
+  retina_detect: true
 });
 </script>
 
