@@ -1,6 +1,6 @@
 /* Modern Professional Color Palette */
 :root {
-    --primary: #000000;          /* Pure Black */
+    --primary: #141414;          /* Changed from #0a0a0a to #111111 - slightly lighter */
     --secondary: #ff6b6b;        /* Changed from Mint to Red */
     --accent: #ff6b6b;          /* Coral Red */
     --accent-light: #ffd8d8;    /* Light Coral */
@@ -8,8 +8,8 @@
     --text-secondary: #8892b0;  /* Slate */
     --gradient-1: linear-gradient(135deg, #ff6b6b, #ff8e8e);  /* Red Gradient */
     --gradient-2: linear-gradient(135deg, #ff6b6b, #ff8e8e);  /* Red Gradient */
-    --dark-bg: #000000;
-    --card-bg: rgba(0, 0, 0, 0.97);
+    --dark-bg: #141414;       /* Updated this too to match */
+    --card-bg: rgba(20, 20, 20, 0.97);  /* Updated to match new color */
 }
 
 /* General Styling */
@@ -116,13 +116,13 @@ h1 {
 }
 
 .skills-text {
-    font-size: 1.36rem;  /* Changed to 1.36rem */
+    font-size: 1.36rem;  /* Set to 1.36rem */
     margin: 0.5rem 0;
     text-align: center;
 }
 
 .rotating-text {
-    font-size: 2.2rem;  /* Keeping this the same */
+    font-size: 2.2rem;  /* Changed to 2.2rem */
     color: var(--accent);
     font-weight: bold;
 }
