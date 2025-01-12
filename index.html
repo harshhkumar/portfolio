@@ -7,11 +7,16 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous"></script>
-    <link rel="icon" type="image/png" sizes="32x32" href="images/Profile 2.png" style="border-radius: 50%;">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Pacifico&family=Great+Vibes&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 </head>
 <body>
+    <div class="mobile-overlay">
+        <div class="sad-emoji">😔</div>
+        <p>Unfortunately, my personal website is currently not optimized for mobile devices, but I am actively working on improving this.</p>
+        <p>For the best experience, please visit my website from a desktop or laptop computer.</p>
+        <p>Thank you! <3</p>
+    </div>
     <div id="particles-js"></div>
     <!-- Fixed Header -->
     <header class="fixed-header">
@@ -517,6 +522,63 @@ particlesJS("particles-js", {
   },
   retina_detect: true
 });
+</script>
+
+<script>
+// Get all sections that have an ID defined
+const sections = document.querySelectorAll("section[id]");
+
+// Add an event listener listening for scroll
+window.addEventListener("scroll", navHighlighter);
+
+function navHighlighter() {
+    // Get current scroll position
+    let scrollY = window.pageYOffset;
+    
+    // Now we loop through sections to get height, top and ID values for each
+    sections.forEach(current => {
+        const sectionHeight = current.offsetHeight;
+        const sectionTop = current.offsetTop - 100; // Adjust if needed
+        const sectionId = current.getAttribute("id");
+        
+        /* If our current scroll position enters the space where current section 
+        on screen is, add .active class to corresponding navigation link, else remove it */
+        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+            document.querySelector(`.nav-links a[href*=${sectionId}]`).classList.add("active");
+        } else {
+            document.querySelector(`.nav-links a[href*=${sectionId}]`).classList.remove("active");
+        }
+    });
+}
+</script>
+
+<script>
+// Check if device is mobile
+function isMobileDevice() {
+    return (window.innerWidth <= 768);
+}
+
+// Show/hide overlay based on device
+function handleMobileOverlay() {
+    const overlay = document.querySelector('.mobile-overlay');
+    const mainContent = document.querySelector('body');
+    
+    if (isMobileDevice()) {
+        overlay.style.display = 'flex';
+        mainContent.style.overflow = 'hidden';
+        mainContent.style.height = '100vh';
+        mainContent.style.position = 'fixed';
+    } else {
+        overlay.style.display = 'none';
+        mainContent.style.overflow = 'auto';
+        mainContent.style.height = 'auto';
+        mainContent.style.position = 'static';
+    }
+}
+
+// Check on load and resize
+window.addEventListener('load', handleMobileOverlay);
+window.addEventListener('resize', handleMobileOverlay);
 </script>
 
 </body>

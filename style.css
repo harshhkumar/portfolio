@@ -92,6 +92,15 @@ body {
     width: 100%;
 }
 
+/* Add active class styles */
+.nav-links a.active {
+    color: var(--accent);
+}
+
+.nav-links a.active::after {
+    width: 100%;
+}
+
 /* Home Section */
 .home-section {
     height: 100vh;  /* Exact viewport height */
@@ -1565,4 +1574,49 @@ body,
     position: relative;
     z-index: 2;
     background: transparent;  /* Make sure backgrounds are transparent */
+}
+
+/* Add this to your CSS */
+.mobile-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #0a192f; /* Dark blue background */
+    z-index: 9999;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Prevent any scrolling */
+}
+
+.mobile-overlay img {
+    width: 120px;
+    margin-bottom: 30px;
+}
+
+.mobile-overlay p {
+    color: #ffd700; /* Golden yellow text */
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin: 10px 0;
+    max-width: 300px;
+}
+
+/* Hide overlay on desktop */
+@media screen and (min-width: 769px) {
+    .mobile-overlay {
+        display: none !important;
+    }
+}
+
+/* Add emoji style */
+.sad-emoji {
+    font-size: 50px;
+    margin-bottom: 20px;
 }
