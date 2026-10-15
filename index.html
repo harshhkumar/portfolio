@@ -1,585 +1,284 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Harsh Kumar</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Pacifico&family=Great+Vibes&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Harsh Kumar · Data & Product Analyst</title>
+  <meta name="description" content="Portfolio of Harsh Kumar, a data and product analyst: A/B testing, cohort and funnel analysis, data modeling and BI. Browse it like a workbook, or query it with SQL.">
+  <meta name="theme-color" content="#107c41">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23107c41'/%3E%3Cpath d='M6 11h20M6 17h20M6 23h20M13 6v20M20 6v20' stroke='%23fff' stroke-width='1.6' fill='none'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script>
+    try { var t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
 </head>
 <body>
-    <div class="mobile-overlay">
-        <div class="sad-emoji">😔</div>
-        <p>Unfortunately, my personal website is currently not optimized for mobile devices, but I am actively working on improving this.</p>
-        <p>For the best experience, please visit my website from a desktop or laptop computer.</p>
-        <p>Thank you! <3</p>
-    </div>
-    <div id="particles-js"></div>
-    <!-- Fixed Header -->
-    <header class="fixed-header">
-        <div class="logo">Harsh Kumar</div>
-        <nav>
-            <ul class="nav-links">
-                <li><a href="#home">Overview</a></li>
-                <li><a href="#about">Profile</a></li>
-                <li><a href="#experience">Work</a></li>
-                <li><a href="#projects">Portfolio</a></li>
-                <li><a href="#contact">Connect</a></li>
-            </ul>
-        </nav>
-    </header>
+<div class="app">
 
-    <!-- Home Section -->
-    <section class="home-section" id="home">
-        <div class="home-content">
-            <h1 class="main-heading">Making Data Speak, Code Work</h1>
-            <p class="skills-text">Creating impact through <span class="rotating-text"></span></p>
-            
-            <div class="avatar">
-                <div class="avatar-inner">
-                    <div class="avatar-front">
-                        <img src="images/Profile 2.png" alt="Avatar" />
-                    </div>
-                    <div class="avatar-back">
-                        <img src="images/avatar.png" alt="Project" />
-                    </div>
+  <!-- Title bar -->
+  <header class="titlebar">
+    <div class="tb-left">
+      <span class="logo" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="22" height="22"><rect width="32" height="32" rx="6" fill="currentColor"/><path d="M6 11h20M6 17h20M6 23h20M13 6v20M20 6v20" stroke="#fff" stroke-width="1.8" fill="none"/></svg>
+      </span>
+      <h1 class="filename">Harsh_Kumar_Portfolio<span>.xlsx</span></h1>
+      <span class="saved" title="Everything on this page is live data from the workbook">● Auto-saved</span>
+    </div>
+    <div class="tb-right">
+      <a class="tbtn" href="assets/docs/Harsh_Kumar_Resume.pdf" target="_blank" rel="noopener" id="resumeBtn" data-tip="Open my resume as a PDF">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 20h16"/></svg>
+        <span>Resume</span>
+      </a>
+      <button class="tbtn" id="shareBtn" type="button" data-tip="Share, or download as Excel or CSV">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14a4 4 0 005.7 0l3-3a4 4 0 00-5.7-5.7l-1 1M14 10a4 4 0 00-5.7 0l-3 3A4 4 0 0010 18.7l1-1"/></svg>
+        <span>Share</span>
+      </button>
+      <button class="tbtn icon" id="themeBtn" type="button" aria-label="Toggle dark mode" data-tip="Switch between light and dark">
+        <svg class="i-moon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+        <svg class="i-sun" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4l1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4m11.4-11.4l1.4-1.4"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Formula bar -->
+  <div class="formulabar">
+    <div class="namebox" id="nameBox" data-tip="Cell reference of what you have selected" aria-label="Selected cell">A1</div>
+    <div class="fx" aria-hidden="true">fx</div>
+    <div class="fxtext" id="fxText" data-tip="Formula bar: the formula behind the selected cell" aria-live="polite"></div>
+  </div>
+
+  <!-- Sheet area -->
+  <main class="sheets" id="sheets">
+
+    <!-- ============ SUMMARY ============ -->
+    <section class="sheet" id="sheet-summary" data-sheet="summary" aria-label="Summary">
+      <div class="surface">
+        <div class="objects">
+          <div class="summary-grid">
+
+            <div class="obj hero" data-formula='=PROFILE("Harsh Kumar")'>
+              <div class="photo-frame">
+                <img src="assets/img/harsh.jpg" alt="Portrait of Harsh Kumar" width="320" height="427">
+                <i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i>
+              </div>
+              <div class="hero-text">
+                <p class="eyebrow">Data & Product Analyst</p>
+                <h2>Harsh Kumar</h2>
+                <p class="lede">I turn messy source data into decisions: A/B tests that move conversion, cohort and funnel analysis that moves revenue, and data models that let a new client see insights in half the time.</p>
+                <div class="hero-actions">
+                  <button class="btn primary" type="button" data-goto="experience">Open Experience</button>
+                  <button class="btn" type="button" data-goto="sql">Query my data (SQL)</button>
                 </div>
+              </div>
             </div>
 
-            <!-- Social Icons -->
-            <div class="social-icons">
-                <a href="https://www.linkedin.com/in/kumarharshh" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
-                <a href="https://github.com/harshhkumar" target="_blank"><i class="fa-brands fa-github"></i></a>
-                <a href="https://www.kaggle.com/okayharsh" target="_blank"><i class="fa-brands fa-kaggle"></i></a>
-                <a href="https://x.com/kharshhh?s=21" target="_blank"><i class="fa-brands fa-twitter"></i></a>
-            </div>        
+            <div class="obj record" data-formula='=XLOOKUP("Harsh", People[Name], People[@])'>
+              <table class="rec">
+                <caption class="sr">Profile at a glance</caption>
+                <tbody id="recordBody"></tbody>
+              </table>
+            </div>
+
+            <div class="kpis" id="kpis" aria-label="Key results (click one for the source)"></div>
+
+            <div class="obj chart-card" data-formula='=CHART(Metrics[value], Metrics[metric], FILTER(Metrics, unit="%"))'>
+              <div class="obj-head">
+                <h3>Impact scoreboard</h3>
+                <p>Percent change each piece of work delivered. Click a bar for the story behind it.</p>
+              </div>
+              <div id="chart" class="chart"></div>
+              <ul class="legend" id="legend" aria-label="Legend"></ul>
+            </div>
+
+            <div class="obj gantt-card" data-formula='=TIMELINE(Roles[start_date], Roles[end_date])'>
+              <div class="obj-head">
+                <h3>Career timeline</h3>
+                <p id="tenureLine"></p>
+              </div>
+              <div id="gantt" class="gantt"></div>
+            </div>
+
+          </div>
         </div>
+      </div>
     </section>
 
-    <!-- JavaScript for Typing Effect -->
-    <script>
-     const rotatingText = document.querySelector(".rotating-text");
-const skills = ["Data Analytics ", "Data Engineering ", "Data Visualization ", "Machine Learning ", "Deep Learning ", "Web Development "];
-
-let skillIndex = 0; // Current skill index
-let charIndex = 0;  // Character index
-let isDeleting = false; // Typing or deleting
-
-function typeEffect() {
-    const currentSkill = skills[skillIndex]; // Current skill text
-
-    if (isDeleting) {
-        // Erase text
-        rotatingText.textContent = currentSkill.substring(0, charIndex--);
-    } else {
-        // Type text
-        rotatingText.textContent = currentSkill.substring(0, charIndex++);
-    }
-
-    // Typing and erasing speeds
-    let typingSpeed = isDeleting ? 50 : 100;
-
-    if (!isDeleting && charIndex === currentSkill.length) {
-        typingSpeed = 150; // Pause after typing
-        isDeleting = true;
-    } else if (isDeleting && charIndex === 0) {
-        isDeleting = false;
-        skillIndex = (skillIndex + 1) % skills.length; // Move to next skill
-    }
-
-    setTimeout(typeEffect, typingSpeed);
-}
-
-typeEffect(); // Initial call
- // Initial call
-    </script>
-<!-- About Section -->
-<section id="about" class="about-section">
-    <div class="about-container">
-        <!-- Left Section -->
-        <div class="about-left">
-            <h2 class="section-title">Who I Am</h2>
-            <div class="about-content">
-                <p class="about-text">
-                    👋   <strong>Hey there! I'm Harsh Kumar</strong>, a Software Engineer chillin' in Chennai.
-                </p>
-                <p class="about-text">
-                    <span class="highlight">By day</span>, I'm a <strong>Data Analyst at Invictusdata.ai</strong> –  
-                    crunching numbers, whipping up slick reports to supercharge businesses,  
-                    and building rock-solid data pipelines to kick manual work out the door.  
-                </p>
-                <p class="about-text">
-                    <span class="highlight">When I'm not coding</span>, I'm probably checkmating someone on the chessboard. 🧠♟  
-                </p>
-                <div class="buttons">
-                    <a href="docs/Harsh_Resume.pdf" class="btn resume-btn" target="_blank">See My Resume</a>
-                    <a href="mailto:your-okayharsh1@gmail.com" class="btn contact-btn">Get In Touch</a>
-                </div>            
+    <!-- ============ EXPERIENCE ============ -->
+    <section class="sheet" id="sheet-experience" data-sheet="experience" aria-label="Experience" hidden>
+      <div class="surface">
+        <div class="objects">
+          <div class="obj table-obj" data-formula='=GROUPBY(Roles[company], Achievements[*])'>
+            <div class="obj-head row">
+              <div>
+                <h3>Experience</h3>
+                <p>Each role is a grouped row. Click the <b>+</b> to expand the work underneath it.</p>
+              </div>
+              <div class="grp-ctrl">
+                <button class="btn small" type="button" id="expandAll" data-tip="Open every role">Expand all</button>
+                <button class="btn small" type="button" id="collapseAll" data-tip="Close every role">Collapse all</button>
+              </div>
             </div>
+            <div class="tscroll">
+              <table class="xl" id="expTable">
+                <thead>
+                  <tr><th class="rn"></th><th class="gc"></th><th>Company / Work</th><th>Role</th><th>Period</th><th>Key result</th></tr>
+                </thead>
+                <tbody id="expBody"></tbody>
+              </table>
+            </div>
+          </div>
         </div>
-        
-        <!-- Right Section -->
-        <div class="about-right">
-            <h3>What I Do</h3>
-            <div class="skills-groups-container">
-                <!-- Your skills groups here -->
-                <div class="skills-group">
-                    <h4>Data Analytics</h4>
-                    <div class="skills">
-                        <div class="skill"><i class="fab fa-python"></i> Python</div>
-                        <div class="skill"><i class="fas fa-database"></i> SQL</div>
-                        <div class="skill"><i class="fas fa-table"></i> Excel</div>
-                        <div class="skill"><i class="fas fa-chart-line"></i> Tableau</div>
-                        <div class="skill"><i class="fas fa-chart-bar"></i> Power BI</div>
-                        <div class="skill"><i class="fas fa-code"></i> Pandas</div>
-                        <div class="skill"><i class="fas fa-code"></i> NumPy</div>
-                        <div class="skill"><i class="fas fa-chart-pie"></i> Matplotlib</div>
-                        <div class="skill"><i class="fas fa-chart-area"></i> Seaborn</div>
-                        <div class="skill"><i class="fas fa-database"></i> PostgreSQL</div>
-                        <div class="skill"><i class="fas fa-database"></i> MySQL</div>
-                    </div>
-                </div>
+      </div>
+    </section>
 
-                <div class="skills-group">
-                    <h4>Data Engineering</h4>
-                    <div class="skills">
-                        <div class="skill"><i class="fab fa-aws"></i> AWS</div>
-                        <div class="skill"><i class="fab fa-google"></i> GCP</div>
-                        <div class="skill"><i class="fas fa-database"></i> BigQuery</div>
-                        <div class="skill"><i class="fas fa-server"></i> Redshift</div>
-                        <div class="skill"><i class="fas fa-cloud"></i> Airflow</div>
-                        <div class="skill"><i class="fas fa-database"></i> GraphQL</div>
-                    </div>
+    <!-- ============ SKILLS ============ -->
+    <section class="sheet" id="sheet-skills" data-sheet="skills" aria-label="Skills" hidden>
+      <div class="surface">
+        <div class="objects">
+          <div class="skills-layout">
+            <div class="obj skills-main" data-formula='=FILTER(Skills, ISNUMBER(SEARCH(filter, Skills[skill])))'>
+              <div class="obj-head row">
+                <div>
+                  <h3>Skills</h3>
+                  <p id="skillCount"></p>
                 </div>
-                <div class="skills-group">
-                    <h4>Machine Learning & Deep Learning</h4>
-                    <div class="skills">
-                        <div class="skill"><i class="fas fa-brain"></i> Scikit-Learn</div>
-                        <div class="skill"><i class="fas fa-cogs"></i> TensorFlow</div>
-                        <div class="skill"><i class="fas fa-chart-area"></i> PyTorch</div>
-                        <div class="skill"><i class="fas fa-cloud"></i> SageMaker</div>
-                        <div class="skill"><i class="fas fa-project-diagram"></i> NLTK</div>
-                        <div class="skill"><i class="fas fa-code"></i> Flask</div>
-                        <div class="skill"><i class="fas fa-cloud"></i>Jupyter Notebook </div>
-                    </div>
+                <div class="filters">
+                  <label class="sr" for="skillSearch">Filter skills</label>
+                  <input id="skillSearch" data-tip="Type to filter by skill or category" type="search" placeholder="Filter, e.g. sql, tableau…" autocomplete="off">
                 </div>
-                <div class="skills-group">
-                    <h4>Web Development</h4>
-                    <div class="skills">
-                        <div class="skill"><i class="fab fa-html5"></i> HTML</div>
-                        <div class="skill"><i class="fab fa-css3-alt"></i> CSS</div>
-                        <div class="skill"><i class="fab fa-js"></i> JavaScript</div>
-                        <div class="skill"><i class="fas fa-paper-plane"></i> Bootstrap</div>
-                        <div class="skill"><i class="fas fa-paper-plane"></i> Tailwind CSS</div>
-                    </div>
-                </div>
-
-                <div class="skills-group">
-                    <h4>Others</h4>
-                    <div class="skills">
-                        <div class="skill"><i class="fab fa-git"></i> Git</div>
-                        <div class="skill"><i class="fab fa-github"></i> GitHub</div>
-                        <div class="skill"><i class="fas fa-paper-plane"></i> Postman</div>
-                        <div class="skill"><i class="fas fa-tasks"></i> Jira</div>
-                        <div class="skill"><i class="fas fa-comments"></i>Confluence</div>
-                        <div class="skill"><i class="fas fa-cogs"></i> VS Code</div>
-                        <div class="skill"><i class="fas fa-brain"></i> LLM's</div>
-                        <div class="skill"><i class="fas fa-brain"></i>Shopify</div>
-                    </div>
-                </div>
+              </div>
+              <div class="cat-filter" id="skillCats" role="group" aria-label="Category"></div>
+              <p class="skill-note"><span class="n">2</span> shows how many of my results used a skill. Click any skill for the details.</p>
+              <div class="skill-grid" id="skillGrid"></div>
             </div>
+            <div class="side-stack">
+              <div class="obj" data-formula='=Education[@]'>
+                <div class="obj-head"><h3>Education</h3></div>
+                <div class="plain" id="eduBox"></div>
+              </div>
+              <div class="obj" data-formula='=Certificates[@]'>
+                <div class="obj-head"><h3>Certificates</h3></div>
+                <ul class="plain list" id="certList"></ul>
+              </div>
+            </div>
+          </div>
         </div>
-    </div>
-</section>
+      </div>
+    </section>
 
-<!-- Experience Section -->
-<section class="experience-section" id="experience">
-    <h2 class="section-title">Work Experience</h2>
-    <div class="experience-container">
-        <div class="timeline">
-            <!-- Software Engineer -->
-            <div class="experience-card">
-                <div class="compact-view">
-                    <div class="company-logo">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <div class="compact-info">
-                        <h3 class="role-title">Data Analyst</h3>
-                        <a href="https://www.invictusdata.ai" target="_blank" class="company-name">Invictusdata.ai</a>
-                        <div class="duration">
-                            <i class="far fa-calendar-alt"></i>
-                            <span>Oct 2024 - Present</span>
-                            <span class="location">On-Site</span>
-                        </div>
-                    </div>
+    <!-- ============ SQL ============ -->
+    <section class="sheet" id="sheet-sql" data-sheet="sql" aria-label="SQL console" hidden>
+      <div class="surface">
+        <div class="objects">
+          <div class="sql-layout">
+            <aside class="obj schema" data-formula='=SCHEMA()'>
+              <div class="obj-head"><h3>Tables</h3><p>Click a name to start a query.</p></div>
+              <div id="schema"></div>
+            </aside>
+            <div class="sql-main">
+              <div class="obj query" data-formula='=RUN(ASK(question))'>
+                <form class="askbar" id="askForm">
+                  <span class="asklabel" aria-hidden="true">✦ Ask</span>
+                  <label class="sr" for="askInput">Your question</label>
+                  <input id="askInput" type="text" autocomplete="off" placeholder="Ask in plain English, e.g. What did Harsh achieve at Trivas?">
+                  <button class="btn primary" type="submit" data-tip="Translate to SQL and run it">Ask</button>
+                </form>
+                <div class="examples askex" id="askExamples"><span>Try:</span></div>
+                <div class="answer" id="askAnswer" aria-live="polite" hidden></div>
+                <div class="ed">
+                  <div class="ed-head">
+                    <span class="ed-title">SQL</span>
+                    <span class="ed-sub">Made from your question, or write your own · <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>Enter</kbd></span>
+                    <button class="btn primary small" type="button" id="runSql" data-tip="Run this query (Ctrl or ⌘ + Enter)">Run ▸</button>
+                  </div>
+                  <label class="sr" for="sqlInput">SQL query</label>
+                  <textarea id="sqlInput" spellcheck="false" rows="4"></textarea>
                 </div>
-                
-                <div class="expanded-view">
-                    <div class="responsibilities">
-                        <ul>
-                            <li>Architecting and developing a sophisticated Shopify app leveraging ML algorithms for personalized product recommendations, resulting in 35% increase in cross-selling opportunities</li>
-                            <li>Implementing real-time data pipeline using WebSocket and Redis to track user interactions, achieving 98% accuracy in customer preference prediction</li>
-                            <li>Analyzing customer behavior patterns through advanced analytics and A/B testing, leading to 25% improvement in targeted marketing campaigns</li>
-                            <li>Optimizing recommendation engine performance using caching strategies, reducing response time by 40%</li>
-                        </ul>
-                    </div>
-                    <div class="skills-used">
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">Shopify API</span>
-                        <span class="skill-tag">ML</span>
-                        <span class="skill-tag">SQL</span>
-                        <span class="skill-tag">Analytics</span>
-                    </div>
+                <div class="examples sqlex" id="examples"><span>SQL examples:</span></div>
+              </div>
+              <div class="obj results" data-formula='=RESULT()'>
+                <div class="obj-head row">
+                  <div><h3>Result</h3><p class="meta-hint">Click a row for details.</p></div>
+                  <div class="res-tools"><span id="sqlMeta" class="meta"></span><button class="btn small" type="button" id="copySql" data-tip="Copy the SQL that produced this result">Copy SQL</button></div>
                 </div>
+                <div class="tscroll" id="sqlOut" aria-live="polite"></div>
+              </div>
             </div>
-
-            <!-- Software Engineer Intern -->
-            <div class="experience-card">
-                <div class="compact-view">
-                    <div class="company-logo">
-                        <i class="fas fa-laptop-code"></i>
-                    </div>
-                    <div class="compact-info">
-                        <h3 class="role-title">Software Engineer Intern</h3>
-                        <a href="https://www.invictusdata.ai" target="_blank" class="company-name">Invictusdata.ai</a>
-                        <div class="duration">
-                            <i class="far fa-calendar-alt"></i>
-                            <span>July 2024 - Oct 2024</span>
-                            <span class="location">On-Site</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="expanded-view">
-                    <div class="responsibilities">
-                        <ul>
-                            <li>Engineered interactive dashboards Tableau, boosting sales tracking efficiency by 40% and enabling data-driven decision-making with 50% improved accuracy</li>
-                            <li>Developed automated ETL pipelines using BigQuery and Python, reducing manual data processing time by 60% and ensuring data integrity</li>
-                            <li>Implemented efficient data retrieval system by integrating Shopify API with GraphQL, achieving 45% faster response times and enhanced scalability</li>
-                            <li>Optimized database performance through advanced Redshift and PostgreSQL query tuning, resulting in 30% faster data processing and reduced resource utilization</li>
-                        </ul>
-                    </div>
-                    <div class="skills-used">
-                        <span class="skill-tag">BigQuery</span>
-                        <span class="skill-tag">GraphQL</span>
-                        <span class="skill-tag">PostgreSQL</span>
-                        <span class="skill-tag">Redshift</span>
-                        <span class="skill-tag">Tableau</span>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
-    </div>
-</section>
-<!-- Projects Section -->
-<section class="projects-section" id="projects">
-    <h2 class="section-title">Portfolio</h2>
-    <div class="projects-grid">
-        <!-- Project 1 - Portfolio -->
-        <div class="project-item">
-            <video autoplay muted loop playsinline>
-                <source src="./videos/project 1.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <div class="project-overlay">
-                <h3>Portfolio Website</h3>
-                <div class="project-links">
-                    <a href="https://github.com/harshhkumar/portfolio" target="_blank" class="project-link"><i class="fab fa-github"></i></a>
-                    <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-                </div>
-            </div>
-        </div>
+      </div>
+    </section>
 
-        <!-- Project 2 - Movie Recommendation -->
-        <div class="project-item">
-            <video autoplay muted loop>
-                <source src="videos/Project 2.mp4" type="video/mp4">
-            </video>
-            <div class="project-overlay">
-                <h3>Movie Recommendation System</h3>
-                <div class="project-links">
-                    <a href="https://github.com/harshhkumar/Movie-Recommender-System" target="_blank" class="project-link"><i class="fab fa-github"></i></a>
-                    <a href="https://filmfinder-ai.streamlit.app/" target="_blank"  class="project-link"><i class="fas fa-external-link-alt"></i></a>
-                </div>
+    <!-- ============ CONTACT ============ -->
+    <section class="sheet" id="sheet-contact" data-sheet="contact" aria-label="Contact" hidden>
+      <div class="surface">
+        <div class="objects">
+          <div class="contact-layout">
+            <div class="obj" data-formula='=CONTACT(Harsh)'>
+              <div class="obj-head"><h3>Contact</h3><p>The fastest way to reach me is email.</p></div>
+              <table class="rec contact-rec">
+                <tbody id="contactBody"></tbody>
+              </table>
             </div>
-        </div>
-
-        <!-- Project 3 - Udemy Dashboard -->
-        <div class="project-item">
-            <video autoplay muted loop>
-                <source src="videos/Project 3.mp4" type="video/mp4">
-            </video>
-            <div class="project-overlay">
-                <h3>Udemy Courses Analysis Dashboard</h3>
-                <div class="project-links">
-                    <a href="https://github.com/harshhkumar/Udemy-Courses-Analysis-Dashboard" target="_blank" class="project-link"><i class="fab fa-github"></i></a>
-                    <a href="https://app.powerbi.com/groups/me/reports/0f04c3d2-97cc-4355-8df6-c7c906cfa9c3/ReportSection?ctid=a6dbddde-5798-4eba-a5a8-78807e82d9eb&experience=power-bi" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Project 4 - Ecommerce Dashboard -->
-        <div class="project-item">
-            <video autoplay muted loop>
-                <source src="videos/Project 4.mp4" type="video/mp4">
-            </video>
-            <div class="project-overlay">
-                <h3>Ecommerce Sales Dashboard</h3>
-                <div class="project-links">
-                    <a href="https://github.com/harshhkumar/Ecommerce-Sales-Dasboard-Power-BI-/tree/main" target="_blank" class="project-link"><i class="fab fa-github"></i></a>
-                    <a href="https://app.powerbi.com/groups/me/reports/f3f63985-cc15-4ccf-b2e5-c32d1a9b99e8/ReportSection?ctid=a6dbddde-5798-4eba-a5a8-78807e82d9eb&experience=power-bi" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="contact-section" id="contact">
-    <h2 class="section-title">Reach me</h2>
-    <div class="contact-container">
-        <div class="contact-info">
-            <div class="contact-item glass-card">
-                <i class="fas fa-envelope"></i>
-                <a href="mailto:okayharsh1@gmail.com">okayharsh1@gmail.com</a>
-            </div>
-            
-            <div class="contact-item glass-card">
-                <i class="fab fa-linkedin"></i>
-                <a href="https://www.linkedin.com/in/kumarharshh" target="_blank">LinkedIn Profile</a>
-            </div>
-            
-            <div class="contact-item glass-card">
-                <i class="fab fa-twitter"></i>
-                <a href="https://x.com/kharshhh?s=21" target="_blank">Twitter Profile</a>
-            </div>
-
-            <div class="contact-quote">
-                <p id="random-quote">"Let's connect and create something amazing together!"</p>
-                <div class="quote-decoration"></div>
-            </div>
-        </div>
-
-        <div class="contact-form">
-            <form id="contact-form" action="https://formsubmit.co/okayharsh1@gmail.com" method="POST">
-                <div class="form-group">
-                    <input type="text" id="name" name="name" placeholder="Your Name" required>
-                </div>
-                <div class="form-group">
-                    <input type="email" id="email" name="email" placeholder="Your Email" required>
-                </div>
-                <div class="form-group">
-                    <textarea id="message" name="message" placeholder="Your Message" required></textarea>
-                </div>
-                <!-- Updated hidden inputs with correct URL -->
-                <input type="hidden" name="_subject" value="New Portfolio Contact Message!">
-                <input type="hidden" name="_template" value="table">
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_next" value="https://portfolio-harshh.vercel.app">
-                <button type="submit" class="submit-btn">Send Message</button>
+            <form class="obj compose" id="composeForm" data-formula='=MAILTO(Harsh, subject, body)'>
+              <div class="obj-head"><h3>Send a message</h3><p>Opens in your mail app, addressed to me.</p></div>
+              <label for="cName">Your name</label>
+              <input id="cName" name="name" type="text" autocomplete="name" required>
+              <label for="cSubject">Subject</label>
+              <input id="cSubject" name="subject" type="text" value="Hello from your portfolio">
+              <label for="cMsg">Message</label>
+              <textarea id="cMsg" name="message" rows="5" required></textarea>
+              <button class="btn primary" type="submit">Compose email</button>
             </form>
+          </div>
         </div>
+      </div>
+    </section>
+
+    <!-- Selection rectangle (shared) -->
+    <div class="selection" id="selection" hidden><i class="fill"></i></div>
+
+    <!-- Inspector -->
+    <aside class="inspector" id="inspector" aria-label="Details" hidden>
+      <div class="insp-head">
+        <h3 id="inspTitle">Details</h3>
+        <button class="x" id="inspClose" data-tip="Close (Esc)" type="button" aria-label="Close details">✕</button>
+      </div>
+      <div class="insp-body" id="inspBody"></div>
+    </aside>
+  </main>
+
+  <!-- Sheet tabs + status bar -->
+  <footer class="bottom">
+    <nav class="tabs" id="tabs" role="tablist" aria-label="Sheets"></nav>
+    <div class="status">
+      <span class="ready">Ready</span>
+      <span class="hint">Arrow keys move the cell · Alt+1–5 switch sheets</span>
+      <span class="count" id="sheetCount">Sheet 1 of 6</span>
     </div>
-</section>
+  </footer>
+</div>
 
-<script>
-const quotes = [
-    "Let's connect and create something amazing together! 🚀",
-    "Got a cool project in mind? Let's make it happen! 💡",
-    "Always excited to collaborate on innovative ideas! ✨",
-    "Looking for a data-driven solution? Let's chat! 📊",
-    "Ready to transform your data into insights? Reach out! 📈",
-    "Passionate about turning complex problems into elegant solutions! 💪",
-    "Let's build something extraordinary together! 🌟",
-    "Want to discuss tech, data, or chess? I'm all ears! ♟️",
-    "Innovation meets analytics - let's create magic! ✨",
-    "Ready to take your project to the next level? Connect now! 🎯"
-];
+<dialog class="dlg" id="shareDlg" aria-labelledby="shareTitle">
+  <form method="dialog">
+    <div class="dlg-head"><h2 id="shareTitle">Share or download</h2><button class="x" value="close" aria-label="Close">✕</button></div>
+    <p class="dlg-sub">Take this portfolio with you, as a spreadsheet.</p>
+    <div class="dlg-opts">
+      <button type="button" class="opt-card" id="dlXlsx"><b>Excel workbook <i>.xlsx</i></b><span>A dashboard with pivot-style summaries, plus experience, results, skills, education and contact.</span></button>
+      <button type="button" class="opt-card" id="dlLink"><b>Copy link</b><span id="linkWhat">A link that opens this sheet.</span></button>
+    </div>
+  </form>
+</dialog>
 
-function updateQuote() {
-    const quoteElement = document.getElementById('random-quote');
-    const randomIndex = Math.floor(Math.random() * quotes.length);
-    quoteElement.textContent = quotes[randomIndex];
-}
+<noscript><p style="padding:24px;font-family:sans-serif">This workbook needs JavaScript. You can <a href="assets/docs/Harsh_Kumar_Resume.pdf">read the resume as a PDF</a> or email <a href="mailto:harshvidyarthi312@gmail.com">harshvidyarthi312@gmail.com</a>.</p></noscript>
 
-// Update quote on page load
-updateQuote();
-
-// Optional: Update quote every 5 seconds
-// setInterval(updateQuote, 5000);
-
-// Optional: Update quote on page refresh
-window.addEventListener('load', updateQuote);
-</script>
-
-<script>
-document.getElementById('contact-form').addEventListener('submit', function(e) {
-    // Prevent default form submission
-    e.preventDefault();
-    
-    // Submit the form
-    this.submit();
-    
-    // Show success message (optional)
-    alert('Thank you for your message! I will get back to you soon.');
-});
-</script>
-
-<script>
-// Add touch support for project items
-document.querySelectorAll('.project-item').forEach(item => {
-    item.addEventListener('touchstart', function(e) {
-        this.classList.add('touch-active');
-    }, {passive: true});
-
-    item.addEventListener('touchend', function(e) {
-        this.classList.remove('touch-active');
-    });
-});
-
-// Prevent sticky hover effects on mobile
-document.addEventListener('touchstart', function() {}, {passive: true});
-</script>
-
-<script>
-particlesJS("particles-js", {
-  particles: {
-    number: {
-      value: 180,
-      density: {
-        enable: true,
-        value_area: 1200
-      }
-    },
-    color: {
-      value: "#00d4ff"
-    },
-    shape: {
-      type: "circle"
-    },
-    opacity: {
-      value: 0.6,
-      random: true,
-      anim: {
-        enable: true,
-        speed: 1,
-        opacity_min: 0.1,
-        sync: false
-      }
-    },
-    size: {
-      value: 3,
-      random: true
-    },
-    line_linked: {
-      enable: true,
-      distance: 150,
-      color: "#00d4ff",
-      opacity: 0.3,
-      width: 1
-    },
-    move: {
-      enable: true,
-      speed: 2.5,
-      direction: "none",
-      random: true,
-      straight: false,
-      out_mode: "out",
-      bounce: false,
-      attract: {
-        enable: true,
-        rotateX: 600,
-        rotateY: 1200
-      }
-    }
-  },
-  interactivity: {
-    detect_on: "window",
-    events: {
-      onhover: {
-        enable: true,
-        mode: "grab"
-      },
-      onclick: {
-        enable: true,
-        mode: "push"
-      },
-      resize: true
-    },
-    modes: {
-      grab: {
-        distance: 180,
-        line_linked: {
-          opacity: 0.8
-        }
-      },
-      push: {
-        particles_nb: 8
-      }
-    }
-  },
-  retina_detect: true
-});
-</script>
-
-<script>
-// Get all sections that have an ID defined
-const sections = document.querySelectorAll("section[id]");
-
-// Add an event listener listening for scroll
-window.addEventListener("scroll", navHighlighter);
-
-function navHighlighter() {
-    // Get current scroll position
-    let scrollY = window.pageYOffset;
-    
-    // Now we loop through sections to get height, top and ID values for each
-    sections.forEach(current => {
-        const sectionHeight = current.offsetHeight;
-        const sectionTop = current.offsetTop - 100; // Adjust if needed
-        const sectionId = current.getAttribute("id");
-        
-        /* If our current scroll position enters the space where current section 
-        on screen is, add .active class to corresponding navigation link, else remove it */
-        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-            document.querySelector(`.nav-links a[href*=${sectionId}]`).classList.add("active");
-        } else {
-            document.querySelector(`.nav-links a[href*=${sectionId}]`).classList.remove("active");
-        }
-    });
-}
-</script>
-
-<script>
-// Check if device is mobile
-function isMobileDevice() {
-    return (window.innerWidth <= 768);
-}
-
-// Show/hide overlay based on device
-function handleMobileOverlay() {
-    const overlay = document.querySelector('.mobile-overlay');
-    const mainContent = document.querySelector('body');
-    
-    if (isMobileDevice()) {
-        overlay.style.display = 'flex';
-        mainContent.style.overflow = 'hidden';
-        mainContent.style.height = '100vh';
-        mainContent.style.position = 'fixed';
-    } else {
-        overlay.style.display = 'none';
-        mainContent.style.overflow = 'auto';
-        mainContent.style.height = 'auto';
-        mainContent.style.position = 'static';
-    }
-}
-
-// Check on load and resize
-window.addEventListener('load', handleMobileOverlay);
-window.addEventListener('resize', handleMobileOverlay);
-</script>
-
+<script src="data.js"></script>
+<script src="sql.js"></script>
+<script src="nl.js"></script>
+<script src="export.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
