@@ -480,3 +480,7 @@ tr.click, .xl tr[data-b], .xl tr.co, .xl tr[data-skill], .results tbody tr { cur
 .opt-card b { font-size: 14.5px; }
 .opt-card b i { font: 500 12px var(--sans); color: var(--muted); margin-left: 6px; }
 .opt-card span { font-size: 13px; color: var(--muted); }
+
+/* Resilience: keep the layout correct even if scripts load late or not at all */
+.objects { grid-area: 2 / 2; }
+.pending .sheets { visibility: hidden; }

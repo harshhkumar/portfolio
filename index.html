@@ -13,6 +13,9 @@
   <link rel="stylesheet" href="style.css">
   <script>
     try { var t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+    // hide the half-built workbook until scripts have run (never longer than 4s)
+    document.documentElement.classList.add('pending');
+    setTimeout(function () { document.documentElement.classList.remove('pending'); }, 4000);
   </script>
 </head>
 <body>
@@ -257,7 +260,7 @@
     <div class="status">
       <span class="ready">Ready</span>
       <span class="hint">Arrow keys move the cell · Alt+1–5 switch sheets</span>
-      <span class="count" id="sheetCount">Sheet 1 of 6</span>
+      <span class="count" id="sheetCount">Sheet 1 of 5</span>
     </div>
   </footer>
 </div>

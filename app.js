@@ -869,4 +869,5 @@
   document.addEventListener('click', (e) => { if (!e.target.closest('.sheets, .tabs')) gridActive = false; });
   window.addEventListener('hashchange', () => showSheet(location.hash.slice(1), { push: false }));
   showSheet(location.hash.slice(1) || 'summary', { push: false });
+  document.documentElement.classList.remove('pending');
 })();
