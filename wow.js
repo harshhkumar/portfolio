@@ -258,10 +258,12 @@
     place(gx, gy);
     try {
       /* ── Opening: push in on the hero, title card, pull back to reveal the workbook ── */
-      go('summary'); await closeInsp(); $('.sheet:not([hidden])')?.scrollTo(0, 0); await wait(300);
-      if (!M) { bars.classList.add('on'); vig.classList.add('on'); }
+      $$('.sheet').forEach((sh) => sh.scrollTo({ top: 0, behavior: 'instant' }));   // jump (not glide) to the top so the page never visibly scrolls
+      go('summary'); $('.sheet:not([hidden])')?.scrollTo({ top: 0, behavior: 'instant' });
       camTo($('.hero'), { z: 1.9, dur: 0 });
+      if (!M) { bars.classList.add('on'); vig.classList.add('on'); }
       showTitle('A guided tour', 'Harsh Kumar', 'Analytical &nbsp;·&nbsp; Product &nbsp;·&nbsp; Data');
+      $('#inspClose')?.click(); await wait(200);
       await wait(3000); hideTitle(); await wait(500);
       camReset(2400); say('Overview', 'A product analyst who is <em>analytical</em>, <em>product-minded</em> and <em>data-fluent</em>.', 1); await wait(3600);
 
