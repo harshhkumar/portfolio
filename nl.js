@@ -87,6 +87,16 @@ const NL = (() => {
     if (/\b(hobb\w*|free time|spare time|outside (of )?work|for fun|chess|snooker|interests?|off the clock)\b/.test(q))
       return { sql: 'SELECT * FROM hobbies', answer: (r) => `${r.rows.map((x) => x[0]).join(' and ')}. ${r.rows.map((x) => x[1]).join('. ')}.` };
 
+    // ── the three pillars: Analytical / Product / Data ──
+    const PIL = [[/\banalytical\b|\banalysis pillar\b/, 'Analytical'], [/\bproduct (skills?|side|pillar|results?|wins?|work|impact|achievements?)\b/, 'Product'], [/\bdata (skills?|pillar|side|results?|wins?|work|impact|achievements?)\b/, 'Data']];
+    const pil = PIL.find(([re]) => re.test(q));
+    if (pil) {
+      const wantsResults = /\b(results?|wins?|achiev\w*|impact|numbers?|metrics?|proof|delivered?)\b/.test(q);
+      if (wantsResults)
+        return { sql: `SELECT company, area, metric, value, unit FROM achievements WHERE pillar = ${q1(pil[1])} ORDER BY value DESC`, answer: (r) => `${r.rows.length} ${pil[1].toLowerCase()} results, from ${[...new Set(r.rows.map((x) => x[0]))].join(', ')}.` };
+      return { sql: `SELECT category, skill FROM skills WHERE pillar = ${q1(pil[1])}`, answer: (r) => `${r.rows.length} ${pil[1].toLowerCase()} skills, across ${new Set(r.rows.map((x) => x[0])).size} groups.` };
+    }
+
     // ── skills ──
     const skillHits = skillMatch(q, db);
     if (skillHits.length && !(ACHIEVE.test(q) && companies.length)) {

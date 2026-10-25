@@ -11,14 +11,30 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="wow.css">
   <script>
     try { var t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
     // hide the half-built workbook until scripts have run (never longer than 4s)
     document.documentElement.classList.add('pending');
+    // cinematic intro: once per browser session, never for reduced-motion, never longer than 7s
+    try {
+      if (!sessionStorage.getItem('booted') && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('booting');
+        setTimeout(function () { document.documentElement.classList.remove('booting'); var b = document.getElementById('boot'); if (b) b.remove(); }, 7000);
+      }
+    } catch (e) {}
     setTimeout(function () { document.documentElement.classList.remove('pending'); }, 4000);
   </script>
 </head>
 <body>
+<div id="boot" aria-hidden="true">
+  <canvas id="bootCv"></canvas>
+  <div class="boot-card">
+    <div class="boot-bar"><i></i><i></i><i></i><span>Harsh_Kumar_Portfolio.xlsx</span></div>
+    <div class="boot-body"><div class="ln"></div><div class="ln"></div><div class="ln"></div><div class="ln"></div><div class="boot-prog"><i></i></div></div>
+    <span class="boot-skip">click to skip</span>
+  </div>
+</div>
 <div class="app">
 
   <!-- Title bar -->
@@ -284,5 +300,6 @@
 <script src="nl.js"></script>
 <script src="export.js"></script>
 <script src="app.js"></script>
+<script src="wow.js"></script>
 </body>
 </html>

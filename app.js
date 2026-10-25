@@ -295,6 +295,7 @@
     'business reviews': ['wbr/mbr'],
     'attribution modeling': ['attribution'],
     'rest apis': ['api', 'apis'],
+    'amazon redshift': ['redshift'],
   };
   function evidenceFor(skill) {
     const base = skill.toLowerCase().replace(/\s*\(.*\)/, '');
@@ -546,7 +547,7 @@
     $('#skillSearch').addEventListener('input', render);
     render();
     $('#eduBox').innerHTML = EDUCATION.map((e) => `<b>${esc(e.degree)}</b>${esc(e.institution)}<br><small>${e.start_year} – ${e.end_year} · CGPA ${e.cgpa}</small>`).join('');
-    $('#certList').innerHTML = CERTIFICATES.map((c) => `<li><b>${esc(c.name)}</b><small>${esc(c.issuer)}</small></li>`).join('');
+    $('#certList').innerHTML = CERTIFICATES.map((c) => `<li><a href="${esc(c.url)}" target="_blank" rel="noopener" ${tipA('Open the certificate in a new tab')}><b>${esc(c.name)}</b><small>${esc(c.issuer)} · View certificate ↗</small></a></li>`).join('');
   }
 
   /* ───────── SQL console ───────── */
@@ -555,8 +556,8 @@
     const t = (columns, rows) => ({ columns, rows });
     return {
       roles: t(['company', 'title', 'start_date', 'end_date', 'months'], Object.values(COMPANIES).map((c) => ({ company: c.name, title: c.title, start_date: c.start, end_date: c.end, months: monthsOf(c) }))),
-      achievements: t(['id', 'company', 'area', 'metric', 'value', 'unit', 'direction'], METRICS.map((m) => ({ id: m.id, company: COMPANIES[m.co].name, area: m.area, metric: m.metric, value: m.value, unit: m.unit, direction: m.dir }))),
-      skills: t(['category', 'skill'], SKILLS.flatMap((g) => g.items.map((i) => ({ category: g.cat, skill: i })))),
+      achievements: t(['id', 'company', 'pillar', 'area', 'metric', 'value', 'unit', 'direction'], METRICS.map((m) => ({ id: m.id, company: COMPANIES[m.co].name, pillar: pillarName(PILLAR_BY_BULLET[m.b]), area: m.area, metric: m.metric, value: m.value, unit: m.unit, direction: m.dir }))),
+      skills: t(['pillar', 'category', 'skill'], SKILLS.flatMap((g) => g.items.map((i) => ({ pillar: pillarName(pillarOfSkill(i, g.cat)), category: g.cat, skill: i })))),
       certificates: t(['name', 'issuer'], CERTIFICATES),
       education: t(['degree', 'institution', 'start_year', 'end_year', 'cgpa'], EDUCATION),
       hobbies: t(['hobby', 'note'], HOBBIES),
@@ -572,8 +573,8 @@
   };
   const COL_INFO = {
     roles: { company: 'Employer', title: 'Job title', start_date: 'Start month (YYYY-MM)', end_date: 'End month. NULL means current role', months: 'Months in the role so far' },
-    achievements: { id: 'Unique ID of the result', company: 'Employer', area: 'Kind of work', metric: 'What was measured', value: 'The number achieved', unit: 'Unit: %, people, sessions…', direction: 'up, down, held, level or count' },
-    skills: { category: 'Skill group', skill: 'Tool or method' },
+    achievements: { id: 'Unique ID of the result', company: 'Employer', pillar: 'Analytical, Product or Data', area: 'Kind of work', metric: 'What was measured', value: 'The number achieved', unit: 'Unit: %, people, sessions…', direction: 'up, down, held, level or count' },
+    skills: { pillar: 'Analytical, Product or Data', category: 'Skill group', skill: 'Tool or method' },
     certificates: { name: 'Certificate name', issuer: 'Who issued it' },
     education: { degree: 'Degree', institution: 'College', start_year: 'First year', end_year: 'Graduation year', cgpa: 'Cumulative grade point average' },
     hobbies: { hobby: 'Hobby', note: 'A bit more detail' },
@@ -857,7 +858,7 @@
     const skills = { name: 'Skills', freeze: 1, tab: 'FF2563EB', widths: [30, 36, 20], rows: [H(['Category', 'Skill', 'Results that used it']), ...flat] };
     const education = { name: 'Education', freeze: 1, widths: [14, 70, 44, 26], rows: [H(['Type', 'Name', 'Institution / Issuer', 'Years / Notes']),
       ...EDUCATION.map((e) => ['Education', e.degree, e.institution, `${e.start_year} - ${e.end_year}, CGPA ${e.cgpa}`]),
-      ...CERTIFICATES.map((c) => ['Certificate', c.name, c.issuer, ''])] };
+      ...CERTIFICATES.map((c) => ['Certificate', c.name, c.issuer, c.url])] };
     const contact = { name: 'Contact', freeze: 1, widths: [14, 52], rows: [H(['Channel', 'Value']), ['Email', PROFILE.email], ['Phone', PROFILE.phone], ['LinkedIn', PROFILE.linkedin], ['GitHub', PROFILE.github], ['Kaggle', PROFILE.kaggle]] };
 
     return [dashboard, experience, results, skills, education, contact];

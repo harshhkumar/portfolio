@@ -19,24 +19,24 @@ const COMPANIES = {
 
 /* Experience bullets. **double asterisks** mark the numbers/skills that get highlighted. */
 const BULLETS = [
-  { id: 't1', co: 'trivas', text: 'Designed and analyzed **A/B tests** and cohort-level experiments for Promo Analysis, applying **statistical significance testing** to validate results, driving a **15%** lift in promo-driven conversion.', tags: ['A/B Testing', 'Significance Testing', 'Cohorts'] },
-  { id: 't2', co: 'trivas', text: 'Built a **decision-tree** based refund-classification model for AI Analyst, validating classification thresholds against historical refund data through **hypothesis testing**, eliminating manual review and cutting refund resolution time by **40%**.', tags: ['Decision Tree', 'Hypothesis Testing', 'Python'] },
+  { id: 't1', co: 'trivas', text: 'Designed and analyzed **A/B tests** and cohort-level experiments for Promo Analysis, applying **statistical significance testing** to validate results, driving a **15%** lift in promo-driven conversion.', tags: ['A/B Testing', 'Significance Testing', 'Cohorts', 'Product Analytics'] },
+  { id: 't2', co: 'trivas', text: 'Built a **decision-tree** based refund-classification model for AI Analyst, validating classification thresholds against historical refund data through **hypothesis testing**, eliminating manual review and cutting refund resolution time by **40%**.', tags: ['Decision Tree', 'Hypothesis Testing', 'Python', 'Problem Solving'] },
   { id: 't3', co: 'trivas', text: 'Engineered client-specific data models and statistical business rules for Wingman, an AI analytics tool, cutting onboarding-to-insight time by **50%** across every newly onboarded account.', tags: ['Data Modeling', 'Business Rules', 'AI Analytics'] },
-  { id: 't4', co: 'trivas', text: 'Own client-facing analytics for enterprise brands, including a **$200M+** revenue wellness brand, running **A/B tests**, **cohort analyses**, and **significance testing** on platform audits, informing business recommendations across managed accounts.', tags: ['Client Analytics', 'A/B Testing', 'Cohorts', 'Audits'] },
-  { id: 't5', co: 'trivas', text: 'Designed the underlying data model powering fully isolated, client-specific reporting across **15+** source integrations spanning sales, ads, email, traffic, CS, reviews, subscriptions, and seller platforms, cutting new-client onboarding time by **35%** while supporting **6** distinct sub-brands.', tags: ['Multi-Tenant', 'Data Modeling', 'Integrations'] },
-  { id: 't6', co: 'trivas', text: 'Validated and reconciled source-level data across every connected platform through **SQL**-based ETL checks and **variance analysis**, powering **100%** of accurate client reporting while cutting data-refresh latency by **40%**.', tags: ['SQL', 'ETL', 'Data Quality', 'Data Validation'] },
+  { id: 't4', co: 'trivas', text: 'Own client-facing analytics for enterprise brands, including a **$200M+** revenue wellness brand, running **A/B tests**, **cohort analyses**, and **significance testing** on platform audits, informing business recommendations across managed accounts.', tags: ['Client Analytics', 'A/B Testing', 'Cohorts', 'Audits', 'Power BI'] },
+  { id: 't5', co: 'trivas', text: 'Designed the underlying data model powering fully isolated, client-specific reporting across **15+** source integrations spanning sales, ads, email, traffic, CS, reviews, subscriptions, and seller platforms, cutting new-client onboarding time by **35%** while supporting **6** distinct sub-brands.', tags: ['Multi-Tenant', 'Data Modeling', 'Integrations', 'dbt', 'Meridian Architecture', 'Omni Analytics'] },
+  { id: 't6', co: 'trivas', text: 'Validated and reconciled source-level data across every connected platform through **SQL**-based ETL checks and **variance analysis**, powering **100%** of accurate client reporting while cutting data-refresh latency by **40%**.', tags: ['SQL', 'ETL', 'Data Quality', 'Data Validation', 'Snowflake'] },
   { id: 't7', co: 'trivas', text: 'Direct a **3-person** analytics team, setting day-to-day priorities across client integrations, audits, and reporting deliverables, lifting on-time delivery of reporting commitments to **95%**.', tags: ['Leadership', 'Delivery'] },
 
-  { id: 'v1', co: 'viome', text: 'Built dashboards from scratch across **8** business domains (Sales, Ads, Traffic, Retention, Subscriptions, Finance, Operations, CX), enabling self-serve reporting for a **500K+** customer base validated to **99+%** accuracy against source data.', tags: ['Tableau', 'Dashboards', 'Self-Serve BI'] },
+  { id: 'v1', co: 'viome', text: 'Built dashboards from scratch across **8** business domains (Sales, Ads, Traffic, Retention, Subscriptions, Finance, Operations, CX), enabling self-serve reporting for a **500K+** customer base validated to **99+%** accuracy against source data.', tags: ['Tableau', 'Dashboards', 'Self-Serve BI', 'Sisense'] },
   { id: 'v2', co: 'viome', text: 'Applied **cohort, funnel, and attribution modeling** (Linear, Time Decay) across Sales, Ads, Retention, and Subscription funnels, driving a **12%** increase in subscription revenue through data-backed retention and upsell recommendations that helped scale the business.', tags: ['Cohorts', 'Funnels', 'Attribution'] },
-  { id: 'v3', co: 'viome', text: 'Presented insights across **80+** WBR/MBR sessions directly to Viome stakeholders, translating analysis into strategic recommendations that shaped quarterly planning.', tags: ['Stakeholders', 'WBR/MBR', 'Storytelling'] },
-  { id: 'v4', co: 'viome', text: 'Led a **4-person** migration of **Tableau** reporting from **Redshift** to **PostgreSQL**, delivering on schedule with **zero** reporting downtime across all live dashboards.', tags: ['Migration', 'Redshift', 'PostgreSQL', 'Leadership'] },
-  { id: 'v5', co: 'viome', text: 'Optimized **SQL** queries and automated recurring reporting workflows, cutting manual reporting time by **25%** while running platform audits that kept monthly financial close on schedule.', tags: ['SQL', 'Automation', 'Finance'] },
+  { id: 'v3', co: 'viome', text: 'Presented insights across **80+** WBR/MBR sessions directly to Viome stakeholders, translating analysis into strategic recommendations that shaped quarterly planning.', tags: ['Stakeholders', 'WBR/MBR', 'Storytelling', 'Stakeholder Management'] },
+  { id: 'v4', co: 'viome', text: 'Led a **4-person** migration of **Tableau** reporting from **Redshift** to **PostgreSQL**, delivering on schedule with **zero** reporting downtime across all live dashboards.', tags: ['Migration', 'Redshift', 'PostgreSQL', 'Leadership', 'AWS', 'Problem Solving'] },
+  { id: 'v5', co: 'viome', text: 'Optimized **SQL** queries and automated recurring reporting workflows, cutting manual reporting time by **25%** while running platform audits that kept monthly financial close on schedule.', tags: ['SQL', 'Automation', 'Finance', 'Airflow'] },
 
-  { id: 'd1', co: 'datagets', text: 'Built **Next Best Product**, related-product, and cross-sell/upsell recommendation logic for D2C brands, replacing generic one-size-fits-all suggestions and lifting recommendation click-through by **18%** without added acquisition spend.', tags: ['Recommendations', 'D2C', 'Python'] },
-  { id: 'd2', co: 'datagets', text: 'Partnered with the product team to define **CTR** and conversion-lift metrics for the recommendation engine, driving a **12%** conversion lift across live storefronts through iterative tuning.', tags: ['Product Metrics', 'Experimentation'] },
-  { id: 'd3', co: 'datagets', text: 'Integrated **Shopify** data via **GraphQL APIs** to design **ML-ready datasets** for predictive modeling, expanding analytics coverage to **10+** additional merchant accounts.', tags: ['Shopify', 'GraphQL', 'ML Datasets'] },
-  { id: 'd4', co: 'datagets', text: 'Presented recommendation performance and adoption insights to engineering and product stakeholders, influencing prioritization of **3** roadmap features for the next release cycle.', tags: ['Stakeholders', 'Roadmap'] },
+  { id: 'd1', co: 'datagets', text: 'Built **Next Best Product**, related-product, and cross-sell/upsell recommendation logic for D2C brands, replacing generic one-size-fits-all suggestions and lifting recommendation click-through by **18%** without added acquisition spend.', tags: ['Recommendations', 'D2C', 'Python', 'Matplotlib', 'Git/GitHub'] },
+  { id: 'd2', co: 'datagets', text: 'Partnered with the product team to define **CTR** and conversion-lift metrics for the recommendation engine, driving a **12%** conversion lift across live storefronts through iterative tuning.', tags: ['Product Metrics', 'Experimentation', 'Product Analytics', 'PRD Writing', 'Cross-Functional Collaboration'] },
+  { id: 'd3', co: 'datagets', text: 'Integrated **Shopify** data via **GraphQL APIs** to design **ML-ready datasets** for predictive modeling, expanding analytics coverage to **10+** additional merchant accounts.', tags: ['Shopify', 'GraphQL', 'ML Datasets', 'GCP', 'ShopifyQL', 'Postman', 'REST APIs'] },
+  { id: 'd4', co: 'datagets', text: 'Presented recommendation performance and adoption insights to engineering and product stakeholders, influencing prioritization of **3** roadmap features for the next release cycle.', tags: ['Stakeholders', 'Roadmap', 'PRD Writing', 'Stakeholder Management', 'Cross-Functional Collaboration'] },
 ];
 
 /* Every number worth quoting, one row each. dir: up | down | held | level | count */
@@ -85,9 +85,9 @@ const SKILLS = [
 ];
 
 const CERTIFICATES = [
-  { name: 'Foundations: Data, Data, Everywhere', issuer: 'Google' },
-  { name: 'Data Visualisation: Empowering Business with Effective Insights (Job Simulation)', issuer: 'Tata Group' },
-  { name: 'Power BI (Job Simulation)', issuer: 'PwC Switzerland' },
+  { name: 'Foundations: Data, Data, Everywhere', url: 'https://coursera.org/verify/TEYKRG2YHD9R', issuer: 'Google' },
+  { name: 'Data Visualisation: Empowering Business with Effective Insights (Job Simulation)', url: 'https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/Tata/MyXvBcppsW2FkNYCX_Tata_3DuWWBZJKwc4pJypw_1706941538202_completion_certificate.pdf', issuer: 'Tata Group' },
+  { name: 'Power BI (Job Simulation)', url: 'https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/PwC%20Switzerland/a87GpgE6tiku7q3gu_PwC%20Switzerland_3DuWWBZJKwc4pJypw_1706941540687_completion_certificate.pdf', issuer: 'PwC Switzerland' },
 ];
 
 const EDUCATION = [
@@ -98,3 +98,20 @@ const HOBBIES = [
   { hobby: 'Chess', note: 'Probably checkmating someone on the chessboard' },
   { hobby: 'Snooker', note: 'Played open tournaments across Bangalore and North India' },
 ];
+
+
+/* ───────── The three pillars every skill and result is filed under ───────── */
+const PILLARS = [
+  { id: 'analytical', name: 'Analytical', tag: 'Find what is true',            blurb: 'Design the experiment, test the hypothesis, and prove what actually moved the numbers.', hue: 262, proof: ['m1', 'm2', 'm13'] },
+  { id: 'product',    name: 'Product',    tag: 'Turn insight into decisions',  blurb: 'Define the metrics, write the PRDs, and tell the story that shapes the roadmap.',         hue: 336, proof: ['m14', 'm11', 'm18'] },
+  { id: 'data',       name: 'Data',       tag: 'Make every number trustworthy', blurb: 'Model, pipeline and validate the data so a new client can see insight in half the time.', hue: 176, proof: ['m6', 'm3', 'm8'] },
+];
+const PILLAR_BY_BULLET = { t1: 'analytical', t2: 'analytical', t4: 'analytical', v2: 'analytical', d1: 'analytical',
+  t7: 'product', v1: 'product', v3: 'product', d2: 'product', d4: 'product',
+  t3: 'data', t5: 'data', t6: 'data', v4: 'data', v5: 'data', d3: 'data' };
+const PILLAR_BY_CATEGORY = { 'Data Analytics': 'analytical', 'BI & Visualization': 'analytical',
+  'Product & Business Analytics': 'product', 'Soft Skills': 'product',
+  'Languages': 'data', 'Data Platforms': 'data', 'Data Engineering': 'data', 'APIs & Tools': 'data' };
+const PILLAR_BY_SKILL = { 'Product Metrics (CTR, lift)': 'product', 'Data Validation': 'data' };
+const pillarOfSkill = (skill, cat) => PILLAR_BY_SKILL[skill] || PILLAR_BY_CATEGORY[cat] || 'data';
+const pillarName = (id) => (PILLARS.find((p) => p.id === id) || {}).name || '';
