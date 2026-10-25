@@ -427,3 +427,5 @@ html.gated .app { filter: blur(0); }
 }
 /* the green cell box clashes with the custom SQL console */
 body:has(#sheet-sql:not([hidden])) #selection { display: none !important; }
+/* the green cell-selection box drifts off the content and looks broken: keep the selection logic, hide the box */
+#selection { display: none !important; }
