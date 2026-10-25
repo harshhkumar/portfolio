@@ -64,7 +64,7 @@
 
             <div class="obj hero" data-formula='=PROFILE("Harsh Kumar")'>
               <div class="photo-frame">
-                <img src="assets/img/harsh.jpg" alt="Portrait of Harsh Kumar" width="320" height="427">
+                <img src="assets/img/harsh-portrait.jpg" alt="Portrait of Harsh Kumar" width="320" height="427">
                 <i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i>
               </div>
               <div class="hero-text">
@@ -226,15 +226,16 @@
                 <tbody id="contactBody"></tbody>
               </table>
             </div>
-            <form class="obj compose" id="composeForm" data-formula='=MAILTO(Harsh, subject, body)'>
-              <div class="obj-head"><h3>Send a message</h3><p>Opens in your mail app, addressed to me.</p></div>
+            <form class="obj compose" id="composeForm" data-formula='=SEND(Harsh, subject, body)'>
+              <div class="obj-head"><h3>Send a message</h3><p>Goes straight to my inbox. I usually reply within a day.</p></div>
               <label for="cName">Your name</label>
               <input id="cName" name="name" type="text" autocomplete="name" required>
               <label for="cSubject">Subject</label>
               <input id="cSubject" name="subject" type="text" value="Hello from your portfolio">
               <label for="cMsg">Message</label>
               <textarea id="cMsg" name="message" rows="5" required></textarea>
-              <button class="btn primary" type="submit">Compose email</button>
+              <button class="btn primary" type="submit" id="sendBtn">Send message</button>
+              <p class="form-note" id="sendNote" role="status" aria-live="polite" hidden></p>
             </form>
           </div>
         </div>

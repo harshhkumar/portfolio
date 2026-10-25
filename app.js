@@ -682,11 +682,31 @@
       if (!b) return;
       navigator.clipboard?.writeText(b.dataset.copy).then(() => { b.textContent = 'Copied'; setTimeout(() => { b.textContent = 'Copy'; }, 1500); }, () => {});
     });
-    $('#composeForm').addEventListener('submit', (e) => {
+    $('#composeForm').addEventListener('submit', async (e) => {
       e.preventDefault();
-      const f = new FormData(e.target);
+      const form = e.target, btn = $('#sendBtn'), note = $('#sendNote');
+      const f = new FormData(form);
+      const subject = f.get('subject') || 'Hello from your portfolio';
       const body = `Hi Harsh,\n\n${f.get('message')}\n\n${f.get('name')}`;
-      location.href = `mailto:${PROFILE.email}?subject=${encodeURIComponent(f.get('subject') || 'Hello')}&body=${encodeURIComponent(body)}`;
+      const showNote = (html, ok) => { note.innerHTML = html; note.hidden = false; note.className = 'form-note ' + (ok ? 'ok' : 'err'); };
+      btn.disabled = true; btn.textContent = 'Sending…';
+      try {
+        const res = await fetch(`https://formsubmit.co/ajax/${PROFILE.email}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({ name: f.get('name'), _subject: subject, message: f.get('message'), _template: 'table', _captcha: 'false' }),
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok || data.success === 'false' || data.success === false) throw new Error(data.message || 'send failed');
+        showNote('Message sent. Thank you, I will get back to you soon.', true);
+        form.reset(); $('#cSubject').value = 'Hello from your portfolio';
+      } catch (err) {
+        const gmail = `https://mail.google.com/mail/?view=cm&to=${PROFILE.email}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        const mailto = `mailto:${PROFILE.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        showNote(`Could not send from here. <a href="${gmail}" target="_blank" rel="noopener">Open in Gmail</a> or <a href="${mailto}">use your mail app</a>, or write to ${PROFILE.email}.`, false);
+      } finally {
+        btn.disabled = false; btn.textContent = 'Send message';
+      }
     });
   }
 

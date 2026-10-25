@@ -484,3 +484,8 @@ tr.click, .xl tr[data-b], .xl tr.co, .xl tr[data-skill], .results tbody tr { cur
 /* Resilience: keep the layout correct even if scripts load late or not at all */
 .objects { grid-area: 2 / 2; }
 .pending .sheets { visibility: hidden; }
+
+.form-note { margin: 12px 0 0; font-size: 13px; line-height: 1.45; }
+.form-note.ok { color: var(--green, #1a7f4b); }
+.form-note.err { color: var(--muted, #6b7280); }
+.form-note a { color: inherit; text-decoration: underline; }

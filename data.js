@@ -29,7 +29,7 @@ const BULLETS = [
 
   { id: 'v1', co: 'viome', text: 'Built dashboards from scratch across **8** business domains (Sales, Ads, Traffic, Retention, Subscriptions, Finance, Operations, CX), enabling self-serve reporting for a **500K+** customer base validated to **99+%** accuracy against source data.', tags: ['Tableau', 'Dashboards', 'Self-Serve BI'] },
   { id: 'v2', co: 'viome', text: 'Applied **cohort, funnel, and attribution modeling** (Linear, Time Decay) across Sales, Ads, Retention, and Subscription funnels, driving a **12%** increase in subscription revenue through data-backed retention and upsell recommendations that helped scale the business.', tags: ['Cohorts', 'Funnels', 'Attribution'] },
-  { id: 'v3', co: 'viome', text: 'Presented insights across **40+** WBR/MBR sessions directly to Viome stakeholders, translating analysis into strategic recommendations that shaped quarterly planning.', tags: ['Stakeholders', 'WBR/MBR', 'Storytelling'] },
+  { id: 'v3', co: 'viome', text: 'Presented insights across **80+** WBR/MBR sessions directly to Viome stakeholders, translating analysis into strategic recommendations that shaped quarterly planning.', tags: ['Stakeholders', 'WBR/MBR', 'Storytelling'] },
   { id: 'v4', co: 'viome', text: 'Led a **4-person** migration of **Tableau** reporting from **Redshift** to **PostgreSQL**, delivering on schedule with **zero** reporting downtime across all live dashboards.', tags: ['Migration', 'Redshift', 'PostgreSQL', 'Leadership'] },
   { id: 'v5', co: 'viome', text: 'Optimized **SQL** queries and automated recurring reporting workflows, cutting manual reporting time by **25%** while running platform audits that kept monthly financial close on schedule.', tags: ['SQL', 'Automation', 'Finance'] },
 
@@ -54,7 +54,7 @@ const METRICS = [
   { id: 'm11', co: 'viome',    b: 'v1', area: 'Dashboards',      metric: 'customers served by self-serve BI', value: 500000, unit: 'customers', dir: 'count' },
   { id: 'm12', co: 'viome',    b: 'v1', area: 'Dashboards',      metric: 'accuracy vs source data',        value: 99,     unit: '%',         dir: 'level' },
   { id: 'm13', co: 'viome',    b: 'v2', area: 'Growth',          metric: 'subscription revenue',           value: 12,     unit: '%',         dir: 'up' },
-  { id: 'm14', co: 'viome',    b: 'v3', area: 'Stakeholders',    metric: 'WBR/MBR sessions presented',     value: 40,     unit: 'sessions',  dir: 'count' },
+  { id: 'm14', co: 'viome',    b: 'v3', area: 'Stakeholders',    metric: 'WBR/MBR sessions presented',     value: 80,     unit: 'sessions',  dir: 'count' },
   { id: 'm15', co: 'viome',    b: 'v4', area: 'Migration',       metric: 'analysts led in migration',      value: 4,      unit: 'people',    dir: 'count' },
   { id: 'm16', co: 'viome',    b: 'v5', area: 'Automation',      metric: 'manual reporting time',          value: 25,     unit: '%',         dir: 'down' },
   { id: 'm17', co: 'datagets', b: 'd1', area: 'Recommendations', metric: 'recommendation click-through',   value: 18,     unit: '%',         dir: 'up' },
@@ -70,7 +70,7 @@ const KPIS = [
   { m: 'm11', val: 500,    suffix: 'K+', label: 'Customers on self-serve BI',  note: 'Dashboards built from scratch, 8 domains', formula: '=SUM(Dashboards[Customers_Covered])' },
   { m: 'm13', val: 12,     prefix: '+', suffix: '%', label: 'Subscription revenue', note: 'Retention and upsell recommendations', formula: '=(Revenue[After] - Revenue[Before]) / Revenue[Before]' },
   { m: 'm2',  val: 40,     suffix: '%', label: 'Faster refund resolution', note: 'Decision-tree refund classifier', formula: '=1 - AVERAGE(Refunds[Days_After]) / AVERAGE(Refunds[Days_Before])' },
-  { m: 'm14', val: 40,     suffix: '+',  label: 'WBR / MBR sessions presented', note: 'Straight to stakeholders',               formula: '=COUNTA(Reviews[Session])' },
+  { m: 'm14', val: 80,     suffix: '+',  label: 'WBR / MBR sessions presented', note: 'Straight to stakeholders',               formula: '=COUNTA(Reviews[Session])' },
 ];
 
 const SKILLS = [
