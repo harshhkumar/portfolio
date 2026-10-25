@@ -1,0 +1,18 @@
+{
+  "name": "harsh-kumar-portfolio",
+  "version": "1.0.0",
+  "description": "Portfolio of Harsh Kumar, a data and product analyst",
+  "private": true,
+  "scripts": {
+    "serve": "python3 -m http.server 8000"
+  },
+  "keywords": [
+    "portfolio",
+    "analytics"
+  ],
+  "author": "Harsh Kumar",
+  "license": "ISC",
+  "dependencies": {
+    "@vercel/analytics": "^1.6.1"
+  }
+}
