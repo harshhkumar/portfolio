@@ -177,7 +177,7 @@
     const app = $('.app');
     const ctl = { rej: new Set() };
     const M = innerWidth <= 760;                       // phone: no camera, scroll + spotlight instead
-    const wait = (ms) => new Promise((res, rej) => { const id = setTimeout(() => { ctl.rej.delete(f); res(); }, ms * (M ? 0.68 : 0.88)); const f = () => { clearTimeout(id); rej(new Error('stop')); }; ctl.rej.add(f); });
+    const wait = (ms) => new Promise((res, rej) => { const id = setTimeout(() => { ctl.rej.delete(f); res(); }, ms); const f = () => { clearTimeout(id); rej(new Error('stop')); }; ctl.rej.add(f); });
     const halt = (e) => { if (!e.isTrusted) return; if (e.type === 'keydown' && !['Escape', ' '].includes(e.key)) return; ctl.rej.forEach((f) => f()); };
     const EVS = ['pointerdown', 'keydown', 'wheel'];
     EVS.forEach((ev) => addEventListener(ev, halt, true));
@@ -186,7 +186,11 @@
     const mk = (tagName, id, html, cls) => { const e = document.createElement(tagName); if (id) e.id = id; if (cls) e.className = cls; if (html) e.innerHTML = html; document.body.appendChild(e); return e; };
     const ghost = mk('div', 'ghost', ghostSvg), st = mk('div', 'tstate'), bars = mk('div', 'tbars', '<i></i><i></i>'), vig = mk('div', 'tvig'),
       spotEl = mk('div', 'spot'), title = mk('div', 'ttitle'), tagEl = mk('div', null, '', 'ttag');
-    const TOTAL = 7; let flips = 0;
+    const TOTAL = 4; let flips = 0;
+    st.style.bottom = `${($('.bottom')?.offsetHeight || 0)}px`;   // keep the big statements above the sheet tabs so the tabs stay visible
+    let cinematic = !M;                                  // the virtual camera is used for the intro only
+    const PT = 520; let TY = 20;                            // quick tour: cursor travel time, typing speed
+    ghost.style.transition = 'transform .5s cubic-bezier(.45, .05, .2, 1), opacity .3s';
     const W = () => innerWidth, H = () => innerHeight, B = () => (M ? 0 : innerHeight * 0.03);
 
     /* camera: screen = translate(tx,ty) * scale(z) * app. The app always fills the space between the letterbox bars, so nothing is ever cut off. */
@@ -202,7 +206,7 @@
     const camReset = (dur = 1200) => { const b = base(); camSet(b.z, b.tx, b.ty, dur); };
     const camTo = (el, o = {}) => {
       if (!el) return;
-      if (M) { const sh = el.closest('.sheet'); if (sh) { const r = el.getBoundingClientRect(), sr = sh.getBoundingClientRect(); sh.scrollTo({ top: sh.scrollTop + r.top - sr.top - 6, behavior: 'smooth' }); } return; }
+      if (M || !cinematic) { const sh = el.closest('.sheet'); if (sh) { const r = el.getBoundingClientRect(), sr = sh.getBoundingClientRect(); sh.scrollTo({ top: sh.scrollTop + r.top - sr.top - 6, behavior: 'smooth' }); } return; }
       const { fit = .85, max = 1.7, dx = 0, dy = 0, dur = 1500, z } = o;
       const b = base(), r = el.getBoundingClientRect();
       const cx = (r.left + r.width / 2 - cam.tx) / cam.z, cy = (r.top + r.height / 2 - cam.ty) / cam.z, w = r.width / cam.z, h = r.height / cam.z;
@@ -242,13 +246,13 @@
     /* the ghost cursor */
     let gx = W() * .5, gy = H() * .6;
     const place = (x, y) => { gx = x; gy = y; ghost.style.transform = `translate(${x - 4}px, ${y - 2}px)`; };
-    const ptr = async (el, fx = .5, fy = .5) => { if (!el) return; if (M) { spot(el, 5); await wait(850); spotOff(); return; } const r = el.getBoundingClientRect(); ghost.classList.add('on'); place(r.left + r.width * fx, r.top + r.height * fy); await wait(1000); };
+    const ptr = async (el, fx = .5, fy = .5) => { if (!el) return; if (M) { spot(el, 5); await wait(PT); spotOff(); return; } const r = el.getBoundingClientRect(); ghost.classList.add('on'); place(r.left + r.width * fx, r.top + r.height * fy); await wait(PT); };
     const click = async (el, real = true) => {
       if (M) { if (real && el) el.click(); await wait(250); return; }
       const d = document.createElement('i'); d.className = 'tripple'; d.style.left = gx + 'px'; d.style.top = gy + 'px'; document.body.appendChild(d); setTimeout(() => d.remove(), 700);
       if (real && el) el.click(); await wait(250);
     };
-    const type = async (input, text, ev) => { input.focus(); input.value = ''; for (const ch of text) { input.value += ch; if (ev) input.dispatchEvent(new Event('input')); await wait(42); } };
+    const type = async (input, text, ev) => { input.focus(); input.value = ''; for (const ch of text) { input.value += ch; if (ev) input.dispatchEvent(new Event('input')); await wait(TY); } };
     const closeInsp = async () => { $('#inspClose')?.click(); await wait(250); };
     const topify = (...els) => els.forEach((e) => { try { e.setAttribute('popover', 'manual'); e.hidePopover?.(); e.showPopover?.(); } catch (e2) { /* old browser */ } });
     const showTitle = (k, h, p, end) => { title.className = end ? 'end' : ''; title.innerHTML = `<div class="k">${k}</div><h2>${h}</h2><p>${p}</p>`; requestAnimationFrame(() => title.classList.add('on')); };
@@ -257,94 +261,55 @@
 
     place(gx, gy);
     try {
-      /* ── Opening: push in on the hero, title card, pull back to reveal the workbook ── */
-      $$('.sheet').forEach((sh) => sh.scrollTo({ top: 0, behavior: 'instant' }));   // jump (not glide) to the top so the page never visibly scrolls
+      /* ── The short tour (~25s): intro, a result, SQL → row → Experience, search → Skills, thanks.
+         The camera is only used for the intro; after that the whole workbook (top-right buttons and sheet tabs) stays in view. ── */
+      $$('.sheet').forEach((sh) => sh.scrollTo({ top: 0, behavior: 'instant' }));
       go('summary'); $('.sheet:not([hidden])')?.scrollTo({ top: 0, behavior: 'instant' });
       camTo($('.hero'), { z: 1.9, dur: 0 });
       if (!M) { bars.classList.add('on'); vig.classList.add('on'); }
-      showTitle('A guided tour', 'Harsh Kumar', 'Analytical &nbsp;·&nbsp; Product &nbsp;·&nbsp; Data');
-      $('#inspClose')?.click(); await wait(200);
-      await wait(3000); hideTitle(); await wait(500);
-      camReset(2400); say('Overview', 'A product analyst who is <em>analytical</em>, <em>product-minded</em> and <em>data-fluent</em>.', 1); await wait(3600);
+      showTitle('A quick tour', 'Harsh Kumar', 'Analytical &nbsp;·&nbsp; Product &nbsp;·&nbsp; Data');
+      $('#inspClose')?.click(); await wait(1300); hideTitle(); await wait(200);
+      camSet(1, 0, 0, 800); bars.classList.remove('on'); vig.classList.remove('on');       // pull back to the full, uncropped workbook
+      await wait(850); cinematic = false; app.classList.remove('cam'); app.style.transform = ''; app.style.transition = '';
 
-      /* ── 1 · Results ── */
+      /* 1 · Results on the Summary page */
       say('Results', 'Numbers you can <em>click</em> and verify.', 1);
-      camTo($('#kpis'), { fit: .96, max: 1.5, dur: 1600 }); await wait(1700);
-      const k = $('.kpi'); await ptr(k, .3, .4); spot(k, 8); tag(k, 'Click any number'); await wait(900); await click(k);
-      tagOff(); spotOff(); say('Results', 'Every result links back to <em>the work behind it</em>.', 1);
-      camTo($('#inspector'), { fit: .92, max: 1.5, dur: 1500 }); await wait(3300);
-      await closeInsp(); say('Impact', 'Ranked by <em>impact</em>, not by job title.', 1); camReset(1000); await wait(1000);
-      await scrollIn($('#chart'), .12); camTo($('#chart'), { fit: .92, max: 1.35, dur: 1500 }); await wait(3200);
-      const g = $('.g-bar'); if (g) { await scrollIn(g, .25); camTo($('#gantt'), { fit: .92, max: 1.4, dur: 1500 }); say('Growth', 'From intern to <em>team lead</em> in under three years.', 1); await wait(3000); }
+      const k = $('.kpi'); await ptr(k, .3, .4); spot(k, 8); await click(k); spotOff(); await wait(1700);
+      await closeInsp();
 
-      /* ── 2 · Experience, through the three pillars ── */
-      camReset(1100); say('Experience', `Three roles. <em>${BULLETS.length}</em> measurable results.`, 2); await wait(900);
-      const tabE = tab('experience'); await ptr(tabE); await click(tabE); await wait(900);
-      const lensBar = $('.lens'); if (lensBar) {
-        camTo(lensBar, { fit: .95, max: 1.4, dur: 1500, dy: 60 }); say('Experience', 'Filter my work by <em>pillar</em>.', 2); await wait(1900);
-        const scenes = [['analytical', 'Analytical', 'I design <em>A/B tests</em> that lifted conversion <em>+15%</em>.'], ['product', 'Product', 'I brief stakeholders in <em>80+</em> business reviews.'], ['data', 'Data', 'I model <em>15+</em> sources so insight arrives <em>50% faster</em>.']];
-        for (const [pid, name, line] of scenes) {
-          const chip = $(`.lc[data-p="${pid}"]`); await ptr(chip); await click(chip); say(name, line, 2, pid); await wait(500);
-          const hit = $('#expBody tr.phit'); if (hit) { await scrollIn(hit, .2); camTo(hit, { fit: .9, max: 1.25, dur: 1400 }); }
-          await wait(3000);
-        }
-        const all = $('.lc[data-p="all"]'); camReset(900); await wait(800); await ptr(all); await click(all); await wait(500);
-      }
+      /* 2 · "Query my data (SQL)" → ask → click a row */
+      const toSql = $('.hero [data-goto="sql"]'); await ptr(toSql); await click(toSql); await wait(300);
+      say('SQL', 'Ask my data in <em>plain English</em>.', 2);
+      const inp = $('#askInput'); await click(inp, false); await type(inp, 'What did Harsh achieve at Trivas?'); await wait(150);
+      const sb = $('#askForm button[type="submit"]'); await ptr(sb); await click(sb); await wait(650);
+      say('SQL', 'Every answer comes with an <em>analyst\u2019s note</em>.', 2); await wait(800);
+      const row = $('#sqlOut tbody tr'); await ptr(row, .3, .5); await click(row); await wait(1200);
 
-      /* ── 3 · Skills: the three pillars ── */
-      camReset(900); await wait(600);
-      say('Skills', '<em>Analytical.</em> <em>Product.</em> <em>Data.</em> All three, with proof.', 3);
-      const tabS = tab('skills'); await ptr(tabS); await click(tabS); await wait(900);
-      const venn = $('.venn-card'); if (venn) { camTo(venn, { fit: .9, max: 1.5, dur: 1500 }); await wait(2600); }
-      const pillSay = { analytical: 'I find what is <em>true</em>.', product: 'I turn insight into <em>decisions</em>.', data: 'I make every number <em>trustworthy</em>.' };
-      for (const pid of ['analytical', 'product', 'data']) {
-        const t = $(`.ptabs .lc[data-p="${pid}"]`); camReset(900); await wait(700); await ptr(t); await click(t);
-        const panel = $(`#skillGrid .pillar[data-p="${pid}"]`); camTo(panel, { fit: .97, max: 1.2, dur: 1400 }); say(PBY[pid].name, pillSay[pid], 3, pid); await wait(2600);
-        if (pid === 'analytical') { const chip = $('.proof button', panel); await ptr(chip); tag(chip, 'Click for proof'); await wait(500); await click(chip); tagOff(); await wait(2400); await closeInsp(); }
-        if (pid === 'product') { const pill = $('.pill[data-skill="Business Reviews (WBR/MBR)"]', panel); if (pill) { await ptr(pill); await click(pill); await wait(2400); await closeInsp(); } }
-        if (pid === 'data') { spot(panel, 4); await wait(1800); spotOff(); }
-      }
-      camReset(1000); await wait(900);
+      /* 3 · The card in the pop-up → Experience, filtered to the pillar of that result */
+      const see = $('#inspBody [data-see]'); const bid = see && see.dataset.see; const pid = (bid && PILLAR_BY_BULLET[bid]) || 'analytical';
+      if (see) { await ptr(see); await click(see); }
+      say('Experience', `That result is <em>${PBY[pid].name.toLowerCase()}</em> work.`, 3, pid); await wait(900);
+      const chip = $(`.lc[data-p="${pid}"]`); if (chip) { await ptr(chip); await click(chip); }
+      await wait(2600);
 
-      /* ── 4 · Search ── */
-      say('Search', 'Find anything in <em>one keystroke</em>.', 4); ghost.classList.remove('on'); await wait(900);
-      window.__openPalette && window.__openPalette(); await wait(800);
-      const pin = $('#palIn');
-      await type(pin, 'dark', true); await wait(1200);
-      pin.value = ''; pin.dispatchEvent(new Event('input')); await type(pin, 'excel', true); await wait(1200);
-      pin.value = ''; pin.dispatchEvent(new Event('input')); say('Search', '...or jump <em>straight to any sheet</em>.', 4); await type(pin, 'sql', true); await wait(1000);
-      pin.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true })); await wait(1200);
+      /* 4 · Search → Skills, showing a different pillar than the one just seen (this part is paced slowly on purpose) */
+      say('Search', 'Search jumps <em>anywhere</em>.', 4); ghost.classList.remove('on'); await wait(800);
+      window.__openPalette && window.__openPalette(); await wait(900);
+      const pin = $('#palIn'); TY = 70; await type(pin, 'skills', true); TY = 20; await wait(1100);
+      pin.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true })); await wait(1000);
+      const other = ['product', 'data', 'analytical'].find((p) => p !== pid);
+      const ptab = $(`.ptabs .lc[data-p="${other}"]`);
+      say(PBY[other].name, { product: 'I turn insight into <em>decisions</em>.', data: 'I make every number <em>trustworthy</em>.', analytical: 'I find what is <em>true</em>.' }[other], 4, other);
+      await wait(700);
+      if (ptab) { await ptr(ptab); await click(ptab); }
+      await wait(900);
+      const panel = $(`#skillGrid .pillar[data-p="${other}"]`); if (panel) { spot(panel, 4); await wait(1500); spotOff(); }
+      await wait(900);
 
-      /* ── 5 · SQL ── */
-      say('SQL', 'Ask my data in <em>plain English</em>.', 5);
-      const inp = $('#askInput'); camTo($('.obj.query'), { fit: .94, max: 1.25, dur: 1500 }); await wait(1600);
-      await ptr(inp, .2); await click(inp, false); await type(inp, 'What did Harsh achieve at Trivas?'); await wait(500);
-      const sb = $('#askForm button[type="submit"]'); await ptr(sb); say('SQL', 'Question, SQL, answer: <em>in milliseconds</em>.', 5); await click(sb); await wait(1800);
-      camReset(900); await wait(700); await scrollForce($('.results'), .03); say('SQL', 'Every answer comes with an <em>analyst\u2019s note</em>.', 5); await wait(3000);
-      const row = $('#sqlOut tbody tr');
-      if (row) { await ptr(row, .3, .5); say('SQL', 'Click any row for <em>the story behind it</em>.', 5); await click(row); camTo($('#inspector'), { fit: .92, max: 1.4, dur: 1400 }); await wait(3200); await closeInsp(); camReset(900); await wait(500); }
-      const pbtn = $('.pilex button[data-q*="analytical"]');
-      if (pbtn) { await scrollForce($('.obj.query'), .03); await wait(300); await ptr(pbtn); say('SQL', 'Or slice it by <em>pillar</em>.', 5, 'analytical'); await click(pbtn); await wait(2200); await scrollForce($('.results'), .03); await wait(3600); }
-      camReset(1000); await wait(900);
-
-      /* ── 6 · Export + theme ── */
-      say('Export', 'Take it with you: a <em>real Excel workbook</em>.', 6);
-      const share = $('#shareBtn'); camTo(share, { z: 1.7, dur: 1400 }); await wait(1500);
-      await ptr(share); tag(share, 'Share', true); await wait(700); await click(share); tagOff(); camReset(500); await wait(900);
-      topify(ghost, st); await ptr($('#dlXlsx')); await click(null, false); await wait(2000);
-      $('#shareDlg')?.close(); await wait(700);
-      say('Style', 'Light or <em>dark</em>. Your call.', 6);
-      const th = $('#themeBtn'); await ptr(th); tag(th, 'Light / dark', true); await wait(500);
-      flips++; await click(th); tagOff(); await wait(2600); flips++; await click(th); await wait(1600);
-
-      /* ── 7 · Contact + end card ── */
-      say('Contact', 'Let’s build something <em>together</em>.', 7);
-      const tabC = tab('contact'); await ptr(tabC); await click(tabC); await wait(900);
-      const hl = $('.hello'); if (hl) { camTo(hl, { fit: .92, max: 1.3, dur: 1500 }); await wait(2600); }
-      camTo($('#composeForm'), { fit: .9, max: 1.3, dur: 1500 }); await wait(2200);
-      ghost.classList.remove('on'); st.classList.remove('on'); bars.classList.remove('on'); vig.classList.remove('on'); camSet(1, 0, 0, 1400);
+      /* 5 · Thanks */
+      ghost.classList.remove('on'); st.classList.remove('on');
       showTitle('Thanks for watching', 'Let&rsquo;s talk.', 'harshvidyarthi312@gmail.com &nbsp;·&nbsp; linkedin.com/in/kumarharshh', true);
-      confetti(); await wait(4200);
+      confetti(); await wait(2800);
     } catch (e) { if (e.message !== 'stop') console.warn('[tour]', e); }
 
     /* ── clean up (also runs when the visitor interrupts) ── */
@@ -405,13 +370,15 @@
     requestAnimationFrame(draw);
     const lines = $$('.ln', el), bar = $('.boot-prog i', el);
     const nM = typeof METRICS !== 'undefined' ? METRICS.length : 20, nS = typeof SKILLS !== 'undefined' ? SKILLS.reduce((a, c) => a + c.items.length, 0) : 41;
-    lines[0].innerHTML = '<b>▸</b> Opening <em>Harsh_Kumar_Portfolio.xlsx</em>';
-    lines[1].innerHTML = `<b>▸</b> Loading 5 sheets · ${nM} results · ${nS} skills`;
-    lines[2].innerHTML = '<b>▸</b> Calculating formulas <em>=COUNTA(Reviews[Session])</em>';
-    lines[3].innerHTML = '<b>✓</b> Ready. Hello, I am <b>Harsh</b>.';
+    /* a teaser, not a status log: what the visitor is about to see, using numbers from the resume */
+    const kpi = (m) => { const k = typeof KPIS !== 'undefined' && KPIS.find((x) => x.m === m); return k ? `${k.prefix || ''}${k.val}${k.suffix || ''}` : ''; };
+    lines[0].innerHTML = '<b>▸</b> Can messy data turn into <em>decisions</em>?';
+    lines[1].innerHTML = `<b>▸</b> <em>=AB_TEST(promo)</em> <b>→ ${kpi('m1')}</b> conversion`;
+    lines[2].innerHTML = `<b>▸</b> <em>=COHORT(subscribers)</em> <b>→ ${kpi('m13')}</b> revenue`;
+    lines[3].innerHTML = '<b>✓</b> Yes. Hi, I am <b>Harsh</b>, a data &amp; product analyst.';
     let skipped = false; el.addEventListener('click', () => { skipped = true; });
     const wt = async (ms) => { const s = performance.now(); while (performance.now() - s < ms && !skipped) await sleep(30); };
-    for (let i = 0; i < 4 && !skipped; i++) { lines[i].classList.add('on'); bar.style.width = `${(i + 1) * 25}%`; await wt(i === 3 ? 650 : 520); }
+    for (let i = 0; i < 4 && !skipped; i++) { lines[i].classList.add('on'); bar.style.width = `${(i + 1) * 25}%`; await wt(i === 3 ? 950 : 700); }
     el.classList.add('out'); await sleep(skipped ? 650 : 950);
     stop = true; root.classList.remove('booting'); el.remove(); done();
     reveal($('.sheet:not([hidden])')); playHero();
